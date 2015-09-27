@@ -34,7 +34,7 @@ ob_start();
 	  if ($user->checkValidity($Email,$password))
 	  {
 		  echo "Login successful";
-		  header("location:products.html");
+		  header("location:show_products.php");
 	  }
 	  else
 	  {
