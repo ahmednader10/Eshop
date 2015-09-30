@@ -1,24 +1,33 @@
 <?php
-	class Buy {
+	require_once("DBConnection.php");
+	class manage extends DBConnection{
 		private $user_id;
 		private $product_id;
 		private $tablename = "Bought";
 		private $quantity ;
-		public function buys($uid,$pid,$quantity){
-			$stock = "Select stock FROM products WHERE id =". $pid;
+		public function addtocart($uid,$pid){
 			$this->user_id = $uid;
 			$this->product_id = $pid;
-			$this->quantity = $quantity;
-			$Query1 = "Insert INTO Bought (User_id, Product_id, quantity) VALUES (". $uid .",".$pid.",".$quantity.")";
-			$Query2 = "Update products SET stock=".$stock-$quantity. "WHERE id=1";
+			if ($this->DBselection())
+			{
+			$Query1 = "Insert INTO Bought (User_id, Product_id,bought) VALUES (". $uid .",".$pid.",0)";
+			
 			$ExcuteQuery = mysql_query($Query1);
-			
-			$ExcuteQuery2 = mysql_query($Query2);
-
-			if(ExcuteQuery1){
-				header("location:show_products.php");
+		
+			if(mysql_query($Query1 )){
+				header("location:cart.php");
 			}
+			else{
+				echo "failed to buy product";
+			}
+		}
+		else {
+			echo "can't connect to db";
+			echo $uid;
+			echo $pid;
 			
+			
+		}
 		}
 	}
   ?>

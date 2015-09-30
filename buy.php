@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,23 +8,37 @@
 <div>
 <?php 
   require_once("manage.php");
+  require_once("products.php");
   session_start();
 ?>
+  <div>
+  <?php
+   $p = new products();
+        $values = $p->selectByID($_GET['pid']);
+ 
+  for($i = 0;$i < count($values);$i++)
+  {
+
+  ?>
+
+    <h1><?php       echo $values[$i]['name'];
+     ?></h1>
+     <h2><?php echo $values[$i]['summary']; ?></h2>
+    <h1> price: <?php echo $values[$i]['price'];?></h1>
+    <h1> stock: <?php echo $values[$i]['stock'];?></h1>
+<?php
+  }
+  ?>
+  </div>
    <form action="" method="post">
-      <select type="number" name="quantity">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-      <input type="submit" value="buy" />
+      <input type="submit" name="buy" value="buy" />
     </form>
     <?php
        require_once("manage.php");
-      $buying = new Buy();
-      if($_REQUEST){
-        $buying-> buys(1,$_SESSION["id"],$_REQUEST["quantity"]);
-      }
+     $buying = new manage();
+     if(isset($_REQUEST['buy'])){
+       $buying-> addtocart($_GET['pid'],$_SESSION["id"]);
+     }
     ?>
           
 </div>

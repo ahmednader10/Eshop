@@ -30,10 +30,7 @@ $productsList = $products->selectAll();
       <?php echo $productsList[$i]['summary'];?></td>
       <td><?php echo $productsList[$i]['price'];?></td>
       <td><?php echo $productsList[$i]['stock'];?></td>
-      <?php $_SESSION["pid"] = $productsList[$i]['id'];
-       ?>
-      
-      <td><a href="<?php  ?>"> Buy</a></td>
+      <td><a href="buy.php?pid=<?php echo $productsList[$i]['id']; ?>"> buy</a></td>
   </tr>
   <?php
   }
