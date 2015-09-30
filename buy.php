@@ -21,7 +21,8 @@
 
   ?>
 
-    <h1><?php       echo $values[$i]['name'];
+    <h1><?php     
+      echo $values[$i]['name'];
      ?></h1>
      <h2><?php echo $values[$i]['summary']; ?></h2>
     <h1> price: <?php echo $values[$i]['price'];?></h1>

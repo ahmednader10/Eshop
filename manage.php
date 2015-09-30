@@ -29,5 +29,28 @@
 			
 		}
 		}
+		public function getCart($id)
+	{			
+		$array = array();
+		if ($this->DBselection())
+			{
+		$query = "Select * from products Join Bought  
+		where user_id = ".$id ;
+		$exec = mysql_query($query);
+		if(! $exec){
+				echo "Db error";
+			}else{
+			while($row = mysql_fetch_assoc($exec))
+			{
+				array_push($array,$row);
+			}
+			}
+		}else{
+			echo 'db fail';
+		}
+		return $array;
+	}  
 	}
-  ?>
+
+	
+?>
