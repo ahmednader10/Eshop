@@ -35,7 +35,7 @@
 		if ($this->DBselection())
 			{
 		$query = "Select * from products Join Bought  
-		where user_id = ".$id ;
+		where user_id = ".$id ."AND bought =0" ;
 		$exec = mysql_query($query);
 		if(! $exec){
 				echo "Db error";

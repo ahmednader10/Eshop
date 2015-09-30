@@ -44,7 +44,7 @@ class products extends DBConnection
 		$array = array();
 		if ($this->DBselection())
 		{
-			$Query="select * from products where id =".$id;
+			$Query="select * from products where id = ".$id;
 			$ExcuteQuery = mysql_query($Query);
 			if(! $ExcuteQuery){
 				echo "Db error";
