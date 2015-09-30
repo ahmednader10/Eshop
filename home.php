@@ -27,10 +27,10 @@ ob_start();
   <?php
   require_once("LoginValidity.php");
   $user = new LoginValidity();
-  if($_REQUEST)
+  if($_POST)
 	 {
-	  $Email = $_REQUEST["email"];
-	  $password = $_REQUEST["password"];
+	  $Email = $_POST["email"];
+	  $password = $_POST["password"];
 	  if ($user->checkValidity($Email,$password))
 	  {
 		  echo "Login successful";

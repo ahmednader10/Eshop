@@ -6,13 +6,6 @@ class DBConnection
 	private $password = '';
 	private $DBname = 'eshop';
 	
-	public function DBConnection()
-	{
-		$this->DBname='';
-		$this->server='';
-		$this->password='';
-		$this->username='';
-	}
 	public function Connect()
 	{
 		$Query = mysql_connect($this->server,$this->username,$this->password);
@@ -22,7 +15,7 @@ class DBConnection
 		}
 		else 
 		{
-			return true;
+			return false;
 		}
 	}
 	public function DBselection()
