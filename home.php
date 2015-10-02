@@ -70,7 +70,7 @@ ob_start();
        <li> <p class="title"> <?php echo $productsList[$i]['name'];?></p>
        </li><li class="price">
           <img src="uploads/trollface.png"> 
-          <p ><?php echo $productsList[$i]['price'];?></p>
+          <p ><?php echo "$".$productsList[$i]['price'] ;?></p>
         </li>
         <li class="description"><?php echo $productsList[$i]['summary'];?></li>
         <li class="cta-button">
