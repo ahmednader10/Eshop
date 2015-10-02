@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="foundation.css">
 
-  <meta charset="UTF-8">
-
-  <title>eShop</title>
-
+	<title></title>
 </head>
 <body>
 <div>
@@ -14,7 +12,7 @@
 	require_once("manage.php");
 	$m = new manage();
 	$values = $m -> getCart($_SESSION['email']);
-		
+
 
 	?>
 	<ul>
