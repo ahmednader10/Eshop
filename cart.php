@@ -12,13 +12,6 @@
 	require_once("manage.php");
 	$m = new manage();
 	$values = $m -> getCart($_SESSION['email']);
-	// $u = "Select id from users where email = '".$_SESSION['email']."'";
-	// 		$uid = mysql_query($u);
-	// 		$id = mysql_fetch_row($uid);
-	// 		$query = "Select * from products 
-	// 		Join Bought where User_id 
-	// 		"
-
 	?>
 	<nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
@@ -119,7 +112,7 @@
 		
 		
 	</div>
-	<a href="#"> Checkout </a>
+	<a href="#" class=""> Checkout </a>
 
 </div>
 </body>
