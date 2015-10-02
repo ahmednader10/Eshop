@@ -24,12 +24,33 @@
     }
 
     #dropmenu{
+
+      border: 3px solid black;
       background-color: white;
+      border-color: gray;
+      border-radius: 5px 5px 5px 5px;
       margin-top: 20px;
-     text-align: center;
+     text-align: left;
      display: none;
     }
 
+    #title{
+            color: white;
+   font-size:20px; text-align:center; font-size:20px;background-color:#333333; 
+   box-shadow: 0px 2px black;
+    }
+
+    .product{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+          }
+
+    .flashy{
+      text-align: center;
+      font-size: 30px;
+      background-color: #e6e6e6;
+    }
   </style>
 </head>
 <body>
@@ -50,14 +71,24 @@ $productsList = $products->selectAll();
     <!-- Right Nav Section -->
     <ul id="list" style="position:absolute; left:90vw; display:inline; top:10px;">
         
-      <li ><a href="#"><img src="troll.png"></a></li>
+      <li ><a href="#"><img src="<?php    $uname = mysql_fetch_assoc(mysql_query("Select avatar from users where email = '". $_SESSION["email"]."'"));
+            echo implode(" ", $img) ;
+          ?>"></a></li>
       <li id="drop" onclick="dropdown();">
          <?php    $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
             echo implode(" ", $uname) ;
-          ?>
+          ?> <span class="glyphicon glyphicon-chevron-down"></span>
            <ul id="dropmenu">
               <li>
-              <a href="cart.php"> View Cart <br></a>  
+              <a href="cart.php"> View Cart 
+              <span class="label"> 
+                <?php 
+                require_once("manage.php");
+                $m = new manage();
+                $values = $m -> getCart($_SESSION['email']);
+                echo count($values);
+                ?>
+                </span> <br></a>  
               </li>
               <li>
                 <a name="logout" href="home.php"> Log out<br> </a>
@@ -84,12 +115,23 @@ $productsList = $products->selectAll();
   for($i = 0;$i < count($productsList);$i++)
   {
   ?>
-  <li style="">
-      <img src="/opt/lampp/htdocs/eshop/Eshop/troll.png"> 
-      <p style="font-size:20px;"> <?php echo $productsList[$i]['name'];?></p>
-      <p> <?php echo $productsList[$i]['summary'];?>
-      stock:  <?php echo $productsList[$i]['stock'];?>  price:  <?php echo $productsList[$i]['price'];?></p>
-      <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a>
+  <li >
+     <ul class="pricing-table">
+       <li> <p class="title"> <?php echo $productsList[$i]['name'];?></p>
+       </li><li class="price">
+          <img src="/opt/lampp/htdocs/eshop/Eshop/troll.png"> 
+          <p ><?php echo $productsList[$i]['price'];?></p>
+        </li>
+        <li class="description"><?php echo $productsList[$i]['summary'];?></li>
+        <li class="bullet-item"><?php echo $productsList[$i]['stock'];?></li>
+        <li class="cta-button">
+            <?php if($productsList[$i]['stock'] > 0){ ?>
+            <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a>
+            <?php }else {?>
+            <p> Out of Stock </p>
+            <?php } ?>
+        </li>
+     </ul>
   </li>
    <?php
   }
