@@ -69,7 +69,7 @@
       <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">My Site</a></h1>
+      <h1><a href="#">eShop</a></h1>
     </li>
   </ul>
 
@@ -96,7 +96,7 @@
              <li ><a href=""> Settings </a>
               </li><br>
               <li>
-                <a name="logout" href="home.php?action=logout"> Log out </a>
+                <a name="logout" href="logout.php"> Log out </a>
               </li>
  
       </ul>
@@ -113,12 +113,7 @@
 </nav>
 <div class="row" >
 	<div class="large-2 columns" style="position:absolute; left:0vw;">
-		<?php
-	if(count($values) >0){
-	?>
-        <a href="cart.php?action=buy">Checkout</a><br>
-	    <a href="show_products.php">Add another item to cart</a>
-    	<?php } ?>
+		
 	<?php 
 	   if(count($values) == 0){
 		   echo "Your Cart is still empty ";
@@ -127,6 +122,9 @@
 		   <?php
 	   }
 	   ?>
+       <?php
+	if(count($values) >0){
+	?>
 	</div>
 	<div class="large-8 columns" style="position:absolute; left:20vw;">
 		
@@ -156,8 +154,15 @@
 			}
 			?>
 			</table>
-		    
-
+		 <?php 
+			}
+			?>   
+	<?php
+	if(count($values) >0){
+	?>
+        <a href="cart.php?action=buy">Checkout</a><br>
+	    <a href="show_products.php">Add another item to cart</a>
+    	<?php } ?>
 		<?php
 		if(isset($_GET['action']) && $_GET['action']=="remove"){
 			$m ->RemoveFromCart($_GET['pid']);
