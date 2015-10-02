@@ -77,7 +77,9 @@
     <!-- Right Nav Section -->
     <ul id="list" style="position:absolute; left:90vw; display:inline; top:10px;">
         
-      <li ></li>
+      <li > <img style=" width:2vw; height:3.5vh;" src="<?php $img = mysql_fetch_assoc(mysql_query("Select avatar from users where email = '". $_SESSION["email"]."'"));
+            echo implode(" ", $img) ; ?>" >
+  </li>
       <li id="drop" onclick="dropdown();" >
          <?php    $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
             echo implode(" ", $uname) ;
@@ -121,7 +123,7 @@
         ?>
 
   <div class="row">
-<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" style="margin-top:10vh;">
+<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-1" style="margin-top:3vh;">
    <?php
   for($i = 0;$i < count($values);$i++)
   {
@@ -161,4 +163,4 @@
       
 </div>
 </body>
-</html>
+</html>s
