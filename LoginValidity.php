@@ -48,6 +48,9 @@ class LoginValidity extends DBConnection
 			$row = mysql_fetch_assoc($ExcuteQuery);
 			if ($row)
 			{
+				session_start();
+				$_SESSION["email"] = $Email;
+				$_SESSION["id"] = $ID;
 				return true;	
 			}
 			else

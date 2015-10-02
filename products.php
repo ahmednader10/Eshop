@@ -38,4 +38,28 @@ class products extends DBConnection
 		return $array;
 		
 	}
+
+	public function selectByID($id)
+	{
+		$array = array();
+		if ($this->DBselection())
+		{
+			$Query="select * from products where id = ".$id;
+			$ExcuteQuery = mysql_query($Query);
+			if(! $ExcuteQuery){
+				echo "Db error";
+			}else{
+			while($row = mysql_fetch_assoc($ExcuteQuery))
+			{
+				array_push($array,$row);
+			}
+			}
+		}
+		else 
+		{
+			echo "can't connect to the database";
+		}
+		return $array;
+		
+	}
 }
