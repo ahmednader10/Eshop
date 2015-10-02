@@ -18,6 +18,7 @@ class edit_profile extends DBConnection {
 		if(!filter_var($NewEmail, FILTER_VALIDATE_EMAIL)) {
 			return false;
 		}
+		return true;
 	}
 
 	public function checkPasswordValidity() {
@@ -39,5 +40,51 @@ class edit_profile extends DBConnection {
 	}
 
 }
+
+$form = <<<EOT
+	<p>
+	<form action='edit_profile.php' method='POST'>
+	New First Name:<input type='text' name='new_first_name'/>
+	New Last Name:<input type='text' name='new_last_name'/>
+	New E-mail:<input type='text' name='new_email'/>
+	Old Password:<input type='password' name='old_password'/>
+	New Password:<input type='password' name='new_password'/>
+	New Password Confirmation:<input type='password' name='new_password_confirmation'/>
+	</form>
+	</p>
+EOT;
+
+if(isset($_POST['submit'])) {
+	$newFirst = $_POST['new_first_name'];
+	$newLast = $_POST['new_last_name'];
+	$newEmail = $_POST['email'];
+	$oldPass = $_POST['old_password'];
+	$newPass = $_POST['new_password'];
+	$newPassConfirmation = $_POST['new_password_confirmation'];
+	if(filter_var($email, FILTER_VALIDATE_EMAIL) && $password == $password_confirmation && strlen($password) >= 8) {
+		$email = strtolower($email);	
+		if ($this->DBselection()){
+			$Query = "insert into users (first_name, last_name, password, email) values ('" . $first_name ."', '" . $last_name ."', '" . $password ."', '" . $email . "')";
+			if(mysql_query($Query)) {
+				echo "<h1>You have been registered successfully!</h1>";
+				header('location: home.php');
+			} else {
+				echo "<h1>Unable to register, please report this bug to any of our contact information.";
+			}
+		} else {
+			echo "<h1>Cannot connect to the Database!!</h1>";
+		}
+	} else {
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			echo "<h1>Invalid E-mail, please enter a valid one.</h1><br>";
+		} elseif($password != $password_confirmation) {
+			echo "<h1>Passwords did not match, please try again.</h1><br>";
+		} elseif(strlen($password) < 8) {
+			echo "<h1>The Password must be at least 8 characters";
+		}
+	}
+}
+
+echo $form;
 
 ?>
