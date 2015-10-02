@@ -130,12 +130,15 @@ ob_start();
 
     <!-- Right Nav Section -->
     <ul id="list" style="position:absolute; left:90vw; display:inline; top:10px;">
-        
+        <?php    $uname = mysql_fetch_assoc(mysql_query("Select * from users where email = '". $_SESSION["email"]."'"));
+		if ($uname['avatar'] != ''){
+		?>
       <li > <img style=" width:2vw; height:3.5vh;" src="<?php $img = mysql_fetch_assoc(mysql_query("Select avatar from users where email = '". $_SESSION["email"]."'"));
             echo implode(" ", $img) ; ?>" >
   </li>
+  <?php } ?>
       <li id="drop" onclick="dropdown();" >
-         <?php    $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
+         <?php
             echo $uname['first_name'] ;
           ?>
            <ul id="dropmenu">
@@ -171,6 +174,16 @@ ob_start();
 </nav>
 
   <?php } ?>
+  <?php
+if( !empty( $_REQUEST['message'] ) )
+{
+    echo sprintf( '<p>%s</p>', $_REQUEST['message'] );
+}
+if( !empty( $_REQUEST['message2'] ) )
+{
+    echo sprintf( '<p>%s</p>', $_REQUEST['message2'] );
+}
+?>
   <div class="row" style="margin-top:10vh;">
 <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">
   <?php

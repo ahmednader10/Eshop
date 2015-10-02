@@ -81,12 +81,16 @@
     <!-- Right Nav Section -->
     <ul id="list" style="position:absolute; left:90vw; display:inline; top:10px;">
         
+      <?php    $uname = mysql_fetch_assoc(mysql_query("Select * from users where email = '". $_SESSION["email"]."'"));
+		if ($uname['avatar'] != ''){
+		?>
       <li > <img style=" width:2vw; height:3.5vh;" src="<?php $img = mysql_fetch_assoc(mysql_query("Select avatar from users where email = '". $_SESSION["email"]."'"));
             echo implode(" ", $img) ; ?>" >
   </li>
+  <?php } ?>
       <li id="drop" onclick="dropdown();" >
-         <?php    $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
-            echo $uname['first_name'] 
+         <?php
+            echo $uname['first_name'] ;
           ?>
            <ul id="dropmenu">
               <li>
