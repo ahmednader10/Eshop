@@ -95,7 +95,7 @@ EOT;
 						echo "<h1>You have been registered successfully!</h1>";
 						header('location: home.php');
 					} else {
-						echo "<h1>Unable to register, please report this bug to any of our contact information.";
+						echo "<h1>Sorry the email you've entered already exists!</h1>";
 					}
 				} else {
 					echo "<h1>Cannot connect to the Database!!</h1>";
