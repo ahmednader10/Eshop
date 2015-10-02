@@ -14,6 +14,7 @@
   require_once("manage.php");
   require_once("products.php");
   session_start();
+ // session_destroy();
 ?>
   <div>
   <?php
@@ -34,7 +35,7 @@
      ?></h1>
      <h2><?php echo $values[$i]['summary']; ?></h2>
     <h1> price: <?php echo $values[$i]['price'];?></h1>
-    <h1> stock: <?php echo $values[$i]['stock'];?></h1>
+    
     <a href="buy.php?action=add&pid=<?php echo $pid ?>"> Add to Cart</a>
     
 <?php

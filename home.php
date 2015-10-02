@@ -15,15 +15,21 @@ ob_start();
 <body>
 
 <div>
+ <?php 
+ 		session_start();
+        if(!isset($_SESSION["email"])){
+  ?>  
   <h1>Log in</h1>
   <form action="" method="post">
     <input type="email" placeholder="Email" name ="email" id="email"/>
     <input type="password" placeholder="Password" name="password" id="password" />
     <input type="submit" value="Log in" />
   </form>
-  <a href="Register.php">Sign Up</a>
+  <p>New user ? <a href="Register.php">sign up</a> now</p>
 </div>
-
+<?php
+		}
+		?>
   
   <?php
   require_once("LoginValidity.php");
@@ -56,11 +62,20 @@ ob_start();
   {
   ?>
   <li style="">
-      <img src="/opt/lampp/htdocs/eshop/Eshop/troll.png"> 
+      <img src="troll.png"> 
       <p style="font-size:20px;"> <?php echo $productsList[$i]['name'];?></p>
-      <p> <?php echo $productsList[$i]['summary'];?>
-      stock:  <?php echo $productsList[$i]['stock'];?>  price:  <?php echo $productsList[$i]['price'];?></p>
+      <p> <?php echo $productsList[$i]['summary'];?><br>
+      price:  <?php echo $productsList[$i]['price'];?></p>
+      <?php if($productsList[$i]['stock'] > 0){ ?>
+      <?php if(isset($_SESSION["email"])){ ?>
       <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a>
+      <?php }else { ?>
+      <a href="home.php?action=login"> Buy</a>
+      
+      <?php } ?>
+       <?php }else {?>
+      <p> Out of Stock </p>
+      <?php } ?>
   </li>
    <?php
   }
@@ -69,8 +84,14 @@ ob_start();
 
 </div>
 
-  
+<?php
 
+ if(isset($_GET['action']) && $_GET['action']=="login"){
+	echo '<script language="javascript">';
+			echo 'alert("You Should login first")';
+			echo '</script>';
+ }
+ ?>
 </body>
 
 </html>
