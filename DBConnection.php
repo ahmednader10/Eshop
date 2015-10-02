@@ -22,7 +22,7 @@ class DBConnection
 		}
 		else 
 		{
-			return true;
+			return false;
 		}
 	}
 	public function DBselection()

@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>eShop</title>
+
+</head>
 <body>
 <?php
 require_once("products.php");
