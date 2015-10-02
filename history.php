@@ -118,12 +118,7 @@
 </nav>
 <div>
 	<?php
-	
-	
-	
-	$values = $m -> viewHistory($_SESSION['email']);
-		
-
+  	$values = $m -> viewHistory($_SESSION['email']);	
 	?>
 	
 	<?php
