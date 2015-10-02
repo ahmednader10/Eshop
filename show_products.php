@@ -118,9 +118,6 @@ if( !empty( $_REQUEST['message'] ) )
     echo sprintf( '<p>%s</p>', $_REQUEST['message'] );
 }
 ?>
-<div>
-
-</div>
 <div class="row">
 <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" style="margin-top:10vh;">
   <?php

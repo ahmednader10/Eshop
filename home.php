@@ -59,27 +59,34 @@ ob_start();
   </div>
   <?php } ?>
   <div class="row">
-<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">
+<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" style="margin-top:10vh;">
   <?php
   
   for($i = 0;$i < count($productsList);$i++)
   {
   ?>
-  <li style="">
-      <img src="uploads/trollface.png"> 
-      <p style="font-size:20px;"> <?php echo $productsList[$i]['name'];?></p>
-      <p> <?php echo $productsList[$i]['summary'];?><br>
-      price:  <?php echo $productsList[$i]['price'];?></p>
+  <li >
+     <ul class="pricing-table">
+       <li> <p class="title"> <?php echo $productsList[$i]['name'];?></p>
+       </li><li class="price">
+          <img src="uploads/trollface.png"> 
+          <p ><?php echo $productsList[$i]['price'];?></p>
+        </li>
+        <li class="description"><?php echo $productsList[$i]['summary'];?></li>
+        <li class="cta-button">
+            
       <?php if($productsList[$i]['stock'] > 0){ ?>
       <?php if(isset($_SESSION["email"])){ ?>
-      <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a>
+      <p><a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a></p>
       <?php }else { ?>
-      <a href="home.php?action=login"> Buy</a>
+      <p><a href="home.php?action=login"> Buy</a></p>
       
       <?php } ?>
        <?php }else {?>
       <p> Out of Stock </p>
       <?php } ?>
+        </li>
+     </ul>
   </li>
    <?php
   }
