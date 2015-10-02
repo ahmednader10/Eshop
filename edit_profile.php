@@ -247,7 +247,7 @@ class edit_profile extends DBConnection {
 			$Query .= ' WHERE email="' . $_SESSION['email'] . '";';
 			if(mysql_query($Query)) {
 				echo '<h1>Your information has been changed successfully</h1><br>';
-				if(isset($newEmail)){
+				if(isset($this->newEmail)){
 					$_SESSION['email'] = $this->newEmail;
 				}
 			} else {
