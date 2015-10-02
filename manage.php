@@ -38,8 +38,7 @@
 			
 		}
 		}
-		public function getCart($email)
-	{			
+		public function getCart($email){			
 		$array = array();
 		if ($this->DBselection())
 			{
@@ -47,17 +46,13 @@
 			$uid = mysql_query($u);
 			$id = mysql_fetch_row($uid);
 
-		$query = "Select * from products Join Bought  
-		where User_id = ".$id[0] ."AND bought = false" ;
+		$query = "Select name , price ,stock from products as p INNER JOIN Bought as b
+		on p.id = b.Product_id
+		where b.User_id = ".$id[0] ." AND b.bought = false" ;
 		$exec = mysql_query($query);
-		if(! $exec){
-				echo "Db error";
-
-			}else{
 			while($row = mysql_fetch_assoc($exec))
 			{
 				array_push($array,$row);
-			}
 			}
 		}else{
 				echo 'db fail';
