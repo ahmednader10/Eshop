@@ -78,6 +78,12 @@ $productsList = $products->selectAll();
     </ul>
   </section>
 </nav>
+<?php
+if( !empty( $_REQUEST['message'] ) )
+{
+    echo sprintf( '<p>%s</p>', $_REQUEST['message'] );
+}
+?>
 <div>
 <a href="cart.php?action=cart"> My Cart</a><br>
 <a href="history.php?action=histroy">History</a>
