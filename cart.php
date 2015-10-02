@@ -54,7 +54,7 @@
       background-color: #e6e6e6;
     }
   </style>
-	<title></title>
+	<title>eShop</title>
 </head>
 <body class="container">
 		<?php
@@ -69,7 +69,7 @@
       <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">eShop</a></h1>
+      <h1><a href="show_products.php">eShop</a></h1>
     </li>
   </ul>
 
@@ -83,7 +83,7 @@
           ?>
            <ul id="dropmenu">
               <li>
-              <a href="cart.php?action=cartl" > 
+              <a href="cart.php?action=cart" > 
                 
                 View Cart <span class ="label"><?php 
                 require_once("manage.php");
@@ -92,8 +92,8 @@
                 echo count($values);
                 ?> </span></a>  
               </li>
-              <li><a href="history.php?action=histroy">History</a></li>
-             <li ><a href=""> Settings </a>
+              <li><a href="history.php?action=histroy">History</a></li><br>
+             <li ><a href="show_products.php"> All Products </a>
               </li><br>
               <li>
                 <a name="logout" href="logout.php"> Log out </a>

@@ -84,7 +84,7 @@ $productsList = $products->selectAll();
           ?>
            <ul id="dropmenu">
               <li>
-              <a href="cart.php?action=cartl" > 
+              <a href="cart.php?action=cart" > 
                 
                 View Cart <span class ="label"><?php 
                 require_once("manage.php");
@@ -93,8 +93,8 @@ $productsList = $products->selectAll();
                 echo count($values);
                 ?> </span></a>  
               </li>
-              <li><a href="history.php?action=history">History</a></li>
-             <li ><a href=""> Settings </a>
+              <li><a href="history.php?action=history">History</a></li><br>
+             <li ><a href="show_products.php"> All Products </a>
               </li><br>
               <li>
                 <a name="logout" href="logout.php"> Log out </a>
