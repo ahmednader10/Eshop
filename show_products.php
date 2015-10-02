@@ -79,11 +79,11 @@ $productsList = $products->selectAll();
   {
   ?>
   <li style="">
-      <img src="troll.png"> 
+      <img src="/opt/lampp/htdocs/eshop/Eshop/troll.png"> 
       <p style="font-size:20px;"> <?php echo $productsList[$i]['name'];?></p>
       <p> <?php echo $productsList[$i]['summary'];?>
       stock:  <?php echo $productsList[$i]['stock'];?>  price:  <?php echo $productsList[$i]['price'];?></p>
-      <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> add to cart</a>
+      <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a>
   </li>
    <?php
   }

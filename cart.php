@@ -8,35 +8,31 @@
 	<?php
 	session_start();
 	require_once("manage.php");
-	$u = new manage();
-	$cart = $u->getCart($_SESSION["id"]);
-	?>
-	<table>
-		<?php 
+	$m = new manage();
+	$values = $m -> getCart($_SESSION['email']);
+	// $u = "Select id from users where email = '".$_SESSION['email']."'";
+	// 		$uid = mysql_query($u);
+	// 		$id = mysql_fetch_row($uid);
+	// 		$query = "Select * from products 
+	// 		Join Bought where User_id 
+	// 		"
 
-		if(count($cart) > 0){
-		for($i = 0;$i < count($cart);$i++)
-  	{
-
 	?>
-		<tr>
-			<td>
-				<?php echo $cart[$i]['name']; ?>
-			</td>
-						<td>
-				<?php echo $cart[$i]['price']; ?>
-			</td>
-						<td>
-				<?php echo $cart[$i]['stock']; ?>
-			</td>
-		</tr>
-
-	<?php }
-	} else{
-	 	echo "Empty Cart";
-	 }
+	<ul>
+	<?php
+	  for($i = 0;$i < count($values);$i++)
+  {
 	?>
-	</table>
+	<li>
+		<?php $values[$i]['name'];
+			$values[$i]['price'];
+			$values[$i]['stock'];
+		 ?>
+	</li>
+	<?php 
+	}
+	?>
+	</ul>
 
 </div>
 </body>

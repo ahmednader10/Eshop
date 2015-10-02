@@ -5,12 +5,20 @@
 		private $product_id;
 		private $tablename = "Bought";
 		private $quantity ;
-		public function addtocart($uid,$pid){
-			$this->user_id = $uid;
+
+		public function manage(){
+			$this->tablename = "Bought";
+		}
+
+		public function addtocart($email,$pid){
+			$u = "Select id from users where email = '".$email."'";
+			$uid = mysql_query($u);
+			$id = mysql_fetch_row($uid);
+			$this->user_id = $id[0];
 			$this->product_id = $pid;
 			if ($this->DBselection())
 			{
-			$Query1 = "Insert INTO Bought (User_id, Product_id,bought) VALUES (". $uid .",".$pid.",0)";
+			$Query1 = "Insert INTO Bought (User_id, Product_id,bought) VALUES (". $id[0] .",".$pid.",false)";
 			
 			$ExcuteQuery = mysql_query($Query1);
 		
@@ -18,27 +26,33 @@
 				header("location:cart.php");
 			}
 			else{
-				echo "failed to buy product";
+				echo "failed to add to cart";
+					echo $id[0];
+			echo $pid;
+		
 			}
 		}
 		else {
 			echo "can't connect to db";
-			echo $uid;
-			echo $pid;
 			
 			
 		}
 		}
-		public function getCart($id)
+		public function getCart($email)
 	{			
 		$array = array();
 		if ($this->DBselection())
 			{
+				$u = "Select id from users where email = '".$email."'";
+			$uid = mysql_query($u);
+			$id = mysql_fetch_row($uid);
+
 		$query = "Select * from products Join Bought  
-		where user_id = ".$id ."AND bought =0" ;
+		where User_id = ".$id[0] ."AND bought = false" ;
 		$exec = mysql_query($query);
 		if(! $exec){
 				echo "Db error";
+
 			}else{
 			while($row = mysql_fetch_assoc($exec))
 			{
@@ -46,7 +60,7 @@
 			}
 			}
 		}else{
-			echo 'db fail';
+				echo 'db fail';
 		}
 		return $array;
 	}  
