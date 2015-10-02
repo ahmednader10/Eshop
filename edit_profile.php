@@ -79,7 +79,6 @@ class edit_profile extends DBConnection {
 					$Query .= ', ';
 				}
 				$Query .= 'email = "' . $this->newEmail . '"';
-				$_SESSION['email'] = $this->newEmail;
 				$empty = false;
 			}
 			if($this->newPassword != '') {
@@ -99,6 +98,7 @@ class edit_profile extends DBConnection {
 			$Query .= ' WHERE email="' . $_SESSION['email'] . '";';
 			if(mysql_query($Query)) {
 				echo '<h1>Your information has been changed successfully</h1><br>';
+				$_SESSION['email'] = $this->newEmail;
 			} else {
 				echo '<h1>Something went wrong!!</h1><br>';
 				echo mysql_error();
