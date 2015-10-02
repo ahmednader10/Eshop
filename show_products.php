@@ -97,7 +97,7 @@ $productsList = $products->selectAll();
              <li ><a href=""> Settings </a>
               </li><br>
               <li>
-                <a name="logout" href="home.php?action=logout"> Log out </a>
+                <a name="logout" href="logout.php"> Log out </a>
               </li>
  
       </ul>
@@ -118,9 +118,6 @@ if( !empty( $_REQUEST['message'] ) )
     echo sprintf( '<p>%s</p>', $_REQUEST['message'] );
 }
 ?>
-<div>
-
-</div>
 <div class="row">
 <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" style="margin-top:10vh;">
   <?php
@@ -133,7 +130,7 @@ if( !empty( $_REQUEST['message'] ) )
        <li class="title"> <p > <?php echo $productsList[$i]['name'];?></p>
        </li><li class="price">
           <img src="uploads/trollface.png"> 
-          <p ><?php echo $productsList[$i]['price'];?></p>
+          <p ><?php echo "$".$productsList[$i]['price'];?></p>
         </li>
         <li class="description"><?php echo $productsList[$i]['summary'];?></li>
         <li class="cta-button">

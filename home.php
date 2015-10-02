@@ -163,20 +163,27 @@ ob_start();
   
   for($i = 0;$i < count($productsList);$i++)
   {
-  ?>  <li >
+  ?>
+  <li >
      <ul class="pricing-table">
-       <li class="title"> <p > <?php echo $productsList[$i]['name'];?></p>
+       <li> <p class="title"> <?php echo $productsList[$i]['name'];?></p>
        </li><li class="price">
           <img src="uploads/trollface.png"> 
-          <p ><?php echo $productsList[$i]['price'];?></p>
+          <p ><?php echo "$".$productsList[$i]['price'] ;?></p>
         </li>
         <li class="description"><?php echo $productsList[$i]['summary'];?></li>
         <li class="cta-button">
-            <?php if($productsList[$i]['stock'] > 0){ ?>
-            <p><a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a></p>
-            <?php }else {?>
-            <p> Out of Stock </p>
-            <?php } ?>
+            
+      <?php if($productsList[$i]['stock'] > 0){ ?>
+      <?php if(isset($_SESSION["email"])){ ?>
+      <p><a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a></p>
+      <?php }else { ?>
+      <p><a href="home.php?action=login"> Buy</a></p>
+      
+      <?php } ?>
+       <?php }else {?>
+      <p> Out of Stock </p>
+      <?php } ?>
         </li>
      </ul>
   </li>
