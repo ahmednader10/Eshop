@@ -84,14 +84,14 @@ $productsList = $products->selectAll();
           ?>
            <ul id="dropmenu">
               <li>
-              <a href="cart.php?action=cartl"> 
+              <a href="cart.php?action=cartl" > 
                 
-                View Cart <?php 
+                View Cart <span class ="label"><?php 
                 require_once("manage.php");
                 $m = new manage();
                 $values = $m -> getCart($_SESSION['email']);
                 echo count($values);
-                ?> </a>  
+                ?> </span></a>  
               </li>
               <li><a href="history.php?action=histroy">History</a></li>
              <li ><a href=""> Settings </a>

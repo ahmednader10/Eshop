@@ -108,33 +108,77 @@ ob_start();
   }
   if(isset($_SESSION["email"])){
   ?>
-  <div>
-  	<a href="cart.php?action=cart"> My Cart</a><br>
-	<a href="history.php?action=histroy">History</a>
-  </div>
+  
+
+      <nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">My Site</a></h1>
+    </li>
+  </ul>
+
+    <!-- Right Nav Section -->
+    <ul id="list" style="position:absolute; left:90vw; display:inline; top:10px;">
+        
+      <li ></li>
+      <li id="drop" onclick="dropdown();" >
+         <?php    $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
+            echo implode(" ", $uname) ;
+          ?>
+           <ul id="dropmenu">
+              <li>
+              <a href="cart.php?action=cartl" > 
+                
+                View Cart <span class ="label"><?php 
+                require_once("manage.php");
+                $m = new manage();
+                $values = $m -> getCart($_SESSION['email']);
+                echo count($values);
+                ?> </span></a>  
+              </li>
+              <li><a href="history.php?action=histroy">History</a></li>
+             <li ><a href=""> Settings </a>
+              </li><br>
+              <li>
+                <a name="logout" href="home.php?action=logout"> Log out </a>
+              </li>
+ 
+      </ul>
+     
+      </li>
+         
+    </ul>
+
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li style="color:white;"><p style="position:absolute; top:10px;">
+    </li>
+    </ul>
+</nav>
+
   <?php } ?>
-  <div class="row">
+  <div class="row" style="margin-top:10vh;">
 <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">
   <?php
   
   for($i = 0;$i < count($productsList);$i++)
   {
-  ?>
-  <li style="">
-      <img src="uploads/trollface.png"> 
-      <p style="font-size:20px;"> <?php echo $productsList[$i]['name'];?></p>
-      <p> <?php echo $productsList[$i]['summary'];?><br>
-      price:  <?php echo $productsList[$i]['price'];?></p>
-      <?php if($productsList[$i]['stock'] > 0){ ?>
-      <?php if(isset($_SESSION["email"])){ ?>
-      <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a>
-      <?php }else { ?>
-      <a href="home.php?action=login"> Buy</a>
-      
-      <?php } ?>
-       <?php }else {?>
-      <p> Out of Stock </p>
-      <?php } ?>
+  ?>  <li >
+     <ul class="pricing-table">
+       <li class="title"> <p > <?php echo $productsList[$i]['name'];?></p>
+       </li><li class="price">
+          <img src="uploads/trollface.png"> 
+          <p ><?php echo $productsList[$i]['price'];?></p>
+        </li>
+        <li class="description"><?php echo $productsList[$i]['summary'];?></li>
+        <li class="cta-button">
+            <?php if($productsList[$i]['stock'] > 0){ ?>
+            <p><a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a></p>
+            <?php }else {?>
+            <p> Out of Stock </p>
+            <?php } ?>
+        </li>
+     </ul>
   </li>
    <?php
   }
