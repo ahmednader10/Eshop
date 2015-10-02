@@ -22,7 +22,7 @@
 			
 			$ExcuteQuery = mysql_query($Query1);
 		
-			if(mysql_query($Query1 )){
+			if($ExcuteQuery){
 				header("location:cart.php");
 			}
 			else{
