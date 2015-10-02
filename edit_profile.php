@@ -157,7 +157,7 @@ $notice = '<h3>Input only the information you need to change</h3>';
 $form = <<<EOT
 	<p>
 	<form action='edit_profile.php' method='POST'>
-<<<<<<< HEAD
+
 	New First Name:<input type='text' name='new_first_name'/><br>
 	New Last Name:<input type='text' name='new_last_name'/><br>
 	New E-mail:<input type='text' name='new_email'/><br>
