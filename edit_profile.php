@@ -117,7 +117,7 @@ $form = <<<EOT
 	New E-mail:<input type='text' name='new_email'/><br>
 	New Password:<input type='password' name='new_password'/><br>
 	New Password Confirmation:<input type='password' name='new_password_confirmation'/><br><br>
-	Enter your Password to apply changess :<input type='password' name='old_password'/><br>
+	Enter your Password to apply changes :<input type='password' name='old_password'/><br>
 	<input type='submit' value='Apply changes' name='submit'/><br>
 	</form>
 	</p>
