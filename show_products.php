@@ -23,15 +23,21 @@
       color: white;
     }
 
+    #drop:hover > #dropmenu{
+      display: block;
+    }
+
     #dropmenu{
 
-      border: 3px solid black;
+      border: 1px solid black;
       background-color: white;
       border-color: gray;
-      border-radius: 5px 5px 5px 5px;
-      margin-top: 20px;
-     text-align: left;
+      border-radius: 0 0 5px 5px;
+      margin-top: 9px;
+      margin-right: 3px;
+     text-align: center;
      display: none;
+     box-shadow: 1px 1px gray;
     }
 
     #title{
@@ -71,31 +77,29 @@ $productsList = $products->selectAll();
     <!-- Right Nav Section -->
     <ul id="list" style="position:absolute; left:90vw; display:inline; top:10px;">
         
-      <li ><a href="#"><img src="<?php    $uname = mysql_fetch_assoc(mysql_query("Select avatar from users where email = '". $_SESSION["email"]."'"));
-            echo implode(" ", $img) ;
-          ?>"></a></li>
-      <li id="drop" onclick="dropdown();">
+      <li ></li>
+      <li id="drop" onclick="dropdown();" >
          <?php    $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
             echo implode(" ", $uname) ;
-          ?> <span class="glyphicon glyphicon-chevron-down"></span>
+          ?>
            <ul id="dropmenu">
               <li>
-              <a href="cart.php"> View Cart 
-              <span class="label"> 
+              <a href="cart.php?action=cartl"> 
                 <?php 
                 require_once("manage.php");
                 $m = new manage();
                 $values = $m -> getCart($_SESSION['email']);
                 echo count($values);
                 ?>
-                </span> <br></a>  
+                View Cart </a>  
               </li>
+              <li><a href="history.php?action=histroy">History</a></li>
+             <li ><a href=""> Settings </a>
+              </li><br>
               <li>
-                <a name="logout" href="home.php"> Log out<br> </a>
+                <a name="logout" href="home.php"> Log out </a>
               </li>
-              <li>
-                <a href=""> Settings </a>
-              </li>
+ 
       </ul>
      
       </li>
@@ -109,8 +113,6 @@ $productsList = $products->selectAll();
     </ul>
 </nav>
 <div>
-<a href="cart.php?action=cart"> My Cart</a><br>
-<a href="history.php?action=histroy">History</a>
 
 </div>
 <div class="row">
