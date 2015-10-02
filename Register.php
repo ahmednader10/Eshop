@@ -12,7 +12,7 @@
 </body>
 </html>
 <?php
-require('DBConnection.php');
+require_once('DBConnection.php');
 
 class Register extends DBConnection{
 	
@@ -36,7 +36,6 @@ class Register extends DBConnection{
 EOT;
 
 		if(isset($_POST['submit'])) {
-
 			$first_name = $_POST['first_name'];
 			$last_name = $_POST['last_name'];
 			$email = $_POST['email'];
@@ -103,15 +102,16 @@ EOT;
 				}
 			} else {
 				if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-					echo "<h1>Invalid E-mail, please enter a valid one.</h1><br>" . $form;
+					echo "<h1>Invalid E-mail, please enter a valid one.</h1><br>";
 				} elseif($password != $password_confirmation) {
-					echo "<h1>Passwords did not match, please try again.</h1><br>" . $form;
+					echo "<h1>Passwords did not match, please try again.</h1><br>";
+				} elseif(strlen($password) < 8) {
+					echo "<h1>The Password must be at least 8 characters";
 				}
 			}
 
-		} else {
-			echo $form;
-		}	
+		}
+		echo $form;
 	}
 }
 	$Register = new Register();
