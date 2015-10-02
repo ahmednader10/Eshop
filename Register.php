@@ -61,7 +61,7 @@ EOT;
 		        $uploadOk = 0;
 		    }
 
-			if(filter_var($email, FILTER_VALIDATE_EMAIL) && $password == $password_confirmation) {
+			if(filter_var($email, FILTER_VALIDATE_EMAIL) && $password == $password_confirmation && strlen($password) >= 8) {
 				$email = strtolower($email);
 				if (file_exists($target_file)) {
 				    echo "Sorry, file already exists.";
@@ -85,7 +85,8 @@ EOT;
 				}
 
 				if ($this->DBselection()){
-					$Query = "insert into users (first_name, last_name, password, email , avatar) values ('" . $first_name ."', '" . $last_name ."', '" . $password ."', '" . $email . "','".$target_file."')";
+					$Query = "INSERT INTO users (first_name, last_name, password, email , avatar) VALUES ('" . $first_name ."', '" . $last_name .
+						"', '" . $password ."', '" . $email . "','".$target_file."')";
 					if(mysql_query($Query)) {
 						 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 					        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
