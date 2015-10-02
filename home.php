@@ -35,11 +35,11 @@ ob_start();
 
     #dropmenu{
 
-      border: 1px solid black;
+      border: 1px solid gray;
       background-color: white;
       border-color: gray;
       border-radius: 0 0 5px 5px;
-      margin-top: 9px;
+      margin-top: 8px;
       margin-right: 3px;
      text-align: center;
      display: none;
