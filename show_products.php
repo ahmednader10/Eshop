@@ -136,7 +136,7 @@ ob_start();
   </li>
       <li id="drop" onclick="dropdown();" >
          <?php    $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
-            echo implode(" ", $uname) ;
+            echo $uname['first_name'] ;
           ?>
            <ul id="dropmenu">
               <li>
@@ -150,6 +150,7 @@ ob_start();
                 ?> </span></a>  
               </li>
               <li><a href="history.php?action=history">History</a></li><br>
+              <li><a href="edit_profile.php">Edit Profile</a></li><br>
              <li ><a href="show_products.php"> All Products </a>
               </li><br>
               <li>
@@ -179,7 +180,7 @@ ob_start();
   ?>
   <li >
      <ul class="pricing-table">
-       <li> <p class="title"> <?php echo $productsList[$i]['name'];?></p>
+       <li class="title"> <p > <?php echo $productsList[$i]['name'];?></p>
        </li><li class="price">
           <img src="uploads/trollface.png"> 
           <p ><?php echo "$".$productsList[$i]['price'] ;?></p>

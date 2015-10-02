@@ -84,7 +84,7 @@
   </li>
       <li id="drop" onclick="dropdown();" >
          <?php    $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
-            echo implode(" ", $uname) ;
+            echo $uname['first_name'] 
           ?>
            <ul id="dropmenu">
               <li>
@@ -98,6 +98,7 @@
                 ?> </span></a>  
               </li>
               <li><a href="history.php?action=history">History</a></li><br>
+              <li><a href="edit_profile.php">Edit Profile</a></li><br>
              <li ><a href="show_products.php"> All Products </a>
               </li><br>
               <li>
@@ -118,12 +119,7 @@
 </nav>
 <div>
 	<?php
-	
-	
-	
-	$values = $m -> viewHistory($_SESSION['email']);
-		
-
+  	$values = $m -> viewHistory($_SESSION['email']);	
 	?>
 	
 	<?php
