@@ -1,8 +1,14 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="foundation.css">
-
 <head>
+
+  <meta charset="UTF-8">
+
+  <title>eShop</title>
 <script type="text/javascript">
   function dropdown(){
     if(document.getElementById('dropmenu').style.display== 'none'){
@@ -17,6 +23,10 @@
   <title>eShop</title>
   <style type="text/css">
 
+  #form li{
+    display: inline;
+
+  }
     #list li{
       display: inline;
       margin: 20px;
@@ -57,22 +67,67 @@
       font-size: 30px;
       background-color: #e6e6e6;
     }
+
+    nav{
+      width: 100vw;
+    }
   </style>
+
 </head>
+</head>
+
 <body>
 
+<?php 
+    session_start();
+        if(!isset($_SESSION["email"])){
+  ?>  
+<div style="background-color:#333333; width:100vw;">
+ <div class="row" >
+ 
+  <form action="" method="post" style="margin-top:2vh;">
+   <div class="large-2 columns"> <input style="border-radius: 5px 5px 5px 5px;" type="email" placeholder="Email" name ="email" id="email"/></div>
+   <div class="large-2 columns"> <input style="border-radius: 5px 5px 5px 5px;" type="password" placeholder="Password" name="password" id="password" /></div>
+   <div > <input class="tiny button " style="border-radius: 5px 5px 5px 5px; " type="submit" value="Log in" /></div>
+  </form>
+  <div  style="position:absolute; top:4vh; left:46vw; color:white;">  <p style="font-size:12px;">New user ? <a href="Register.php">sign up</a> now!</p></div>
+</div>
+</div>
 <?php
-session_start();
-require_once("products.php");
-$products=new products();
-$productsList = $products->selectAll();
-?>
+    }
+    ?>
+  
+  <?php
+  require_once("LoginValidity.php");
+  require_once("products.php");
+  $products=new products();
+  $productsList = $products->selectAll();
+  $user = new LoginValidity();
+  if($_POST)
+   {
+    $Email = $_POST["email"];
+    $password = $_POST["password"];
+    if ($user->checkValidity($Email,$password))
+    {
+      echo "Login successful";
+      header("location:show_products.php");
+    }
+    else
+    {
+      echo "please enter correct username and password";
+    }
+  }
+  if(isset($_SESSION["email"])){
+  ?>
+  
+
       <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">eShop</a></h1>
+      <h1><a href="show_products.php">eShop</a></h1>
     </li>
   </ul>
+
     <!-- Right Nav Section -->
     <ul id="list" style="position:absolute; left:90vw; display:inline; top:10px;">
         
@@ -113,17 +168,10 @@ $productsList = $products->selectAll();
     </li>
     </ul>
 </nav>
-<?php
-if( !empty( $_REQUEST['message'] ) )
-{
-    echo sprintf( '<p>%s</p>', $_REQUEST['message'] );
-}
-?>
-<div>
-  
-</div>
-<div class="row">
-<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" style="margin-top:10vh;">
+
+  <?php } ?>
+  <div class="row" style="margin-top:10vh;">
+<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">
   <?php
   
   for($i = 0;$i < count($productsList);$i++)
@@ -131,18 +179,24 @@ if( !empty( $_REQUEST['message'] ) )
   ?>
   <li >
      <ul class="pricing-table">
-       <li class="title"> <p > <?php echo $productsList[$i]['name'];?></p>
+       <li> <p class="title"> <?php echo $productsList[$i]['name'];?></p>
        </li><li class="price">
           <img src="uploads/trollface.png"> 
-          <p ><?php echo "$".$productsList[$i]['price'];?></p>
+          <p ><?php echo "$".$productsList[$i]['price'] ;?></p>
         </li>
         <li class="description"><?php echo $productsList[$i]['summary'];?></li>
         <li class="cta-button">
-            <?php if($productsList[$i]['stock'] > 0){ ?>
-            <p><a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a></p>
-            <?php }else {?>
-            <p> Out of Stock </p>
-            <?php } ?>
+            
+      <?php if($productsList[$i]['stock'] > 0){ ?>
+      <?php if(isset($_SESSION["email"])){ ?>
+      <p><a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a></p>
+      <?php }else { ?>
+      <p><a href="home.php?action=login"> Buy</a></p>
+      
+      <?php } ?>
+       <?php }else {?>
+      <p> Out of Stock </p>
+      <?php } ?>
         </li>
      </ul>
   </li>
@@ -152,12 +206,17 @@ if( !empty( $_REQUEST['message'] ) )
 </ul>
 
 </div>
+
 <?php
-if(isset($_GET['action']) && $_GET['action']=="histroy"){
-	$m ->viewHistory($_SESSION["email"]);
-}
 
-?>
+ if(isset($_GET['action']) && $_GET['action']=="login"){
+  echo '<script language="javascript">';
+      echo 'alert("You Should login first")';
+      echo '</script>';
+ }
+ 
+
+ ?>
 </body>
-</html>
 
+</html>

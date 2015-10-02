@@ -13,6 +13,9 @@
 </script>
  <style type="text/css">
 
+    nav{
+      width: 100vw;
+    }
     #list li{
       display: inline;
       margin: 20px;
@@ -38,7 +41,10 @@
 
     #title{
             color: white;
-   font-size:20px; text-align:center; font-size:20px;background-color:#333333; 
+   font-size:20px; 
+   text-align:center; 
+   font-size:20px;
+   background-color:#333333; 
    box-shadow: 0px 2px black;
     }
 
@@ -59,10 +65,14 @@
 <body class="container">
 		<?php
 	session_start();
+	if(isset($_SESSION['email'])){
 	require_once("manage.php");
 	$m = new manage();
 	$values = $m -> getCart($_SESSION['email']);
-
+	}
+	else{
+		header("location:home.php");
+	}
 
 	?>
 	

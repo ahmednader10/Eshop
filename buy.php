@@ -53,6 +53,10 @@
       font-size: 30px;
       background-color: #e6e6e6;
     }
+    
+    nav{
+      width: 100vw;
+    }
   </style>
 	<title>eShop</title>
 </head>

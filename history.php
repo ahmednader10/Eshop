@@ -59,10 +59,13 @@
 <body class="container">
 		<?php
 	session_start();
+  if(isset($_SESSION['email'])){
 	require_once("manage.php");
 	$m = new manage();
 	$values = $m -> getCart($_SESSION['email']);
-
+  }else{
+    header("location:home.php");
+  }
 
 	?>
 	
