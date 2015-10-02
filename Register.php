@@ -27,7 +27,7 @@ class Register extends DBConnection{
 			E-mail: <input type="text" name="email" required/><br>
 			Password: <input type="password" name="password" required/><br>
 			Confirm Password: <input type="password" name="password_confirmation" required/><br>
-			<input type="file" name="fileToUpload" id="fileToUpload">
+			Upload Profile Picture:<input type="file" name="fileToUpload" id="fileToUpload">
 
 			<input type="submit" value="Register" name="submit"/>
 			</form>

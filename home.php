@@ -80,7 +80,7 @@ ob_start();
     <input type="password" placeholder="Password" name="password" id="password" />
     <input type="submit" value="Log in" />
   </form>
-  <p>New user ? <a href="Register.php">sign up</a> now</p>
+  <p>New user ? <a href="Register.php">sign up</a> now!</p>
 </div>
 <?php
 		}
@@ -113,7 +113,7 @@ ob_start();
       <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">eShop</a></h1>
+      <h1><a href="show_products.php">eShop</a></h1>
     </li>
   </ul>
 
@@ -127,7 +127,7 @@ ob_start();
           ?>
            <ul id="dropmenu">
               <li>
-              <a href="cart.php?action=cartl" > 
+              <a href="cart.php?action=cart" > 
                 
                 View Cart <span class ="label"><?php 
                 require_once("manage.php");
@@ -136,8 +136,8 @@ ob_start();
                 echo count($values);
                 ?> </span></a>  
               </li>
-              <li><a href="history.php?action=history">History</a></li>
-             <li ><a href=""> Settings </a>
+              <li><a href="history.php?action=history">History</a></li><br>
+             <li ><a href="show_products.php"> All Products </a>
               </li><br>
               <li>
                 <a name="logout" href="logout.php"> Log out </a>
