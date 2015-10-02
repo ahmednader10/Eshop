@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+
+  <meta charset="UTF-8">
+
+  <title>eShop</title>
+
 </head>
 <body>
 <div>

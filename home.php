@@ -3,12 +3,12 @@ ob_start();
 ?>
 <!DOCTYPE html>
 <html>
-
+<link rel="stylesheet" href="foundation.css">
 <head>
 
   <meta charset="UTF-8">
 
-  <title>Login Form</title>
+  <title>eShop</title>
 
 </head>
 
@@ -27,6 +27,9 @@ ob_start();
   
   <?php
   require_once("LoginValidity.php");
+  require_once("products.php");
+  $products=new products();
+  $productsList = $products->selectAll();
   $user = new LoginValidity();
   if($_POST)
 	 {
@@ -44,6 +47,28 @@ ob_start();
   }
   
   ?>
+  
+  <div class="row">
+<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">
+  <?php
+  
+  for($i = 0;$i < count($productsList);$i++)
+  {
+  ?>
+  <li style="">
+      <img src="/opt/lampp/htdocs/eshop/Eshop/troll.png"> 
+      <p style="font-size:20px;"> <?php echo $productsList[$i]['name'];?></p>
+      <p> <?php echo $productsList[$i]['summary'];?>
+      stock:  <?php echo $productsList[$i]['stock'];?>  price:  <?php echo $productsList[$i]['price'];?></p>
+      <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a>
+  </li>
+   <?php
+  }
+  ?>
+</ul>
+
+</div>
+
   
 
 </body>

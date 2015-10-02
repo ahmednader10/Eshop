@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="foundation.css">
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>eShop</title>
+
+</head>
 <body>
 
 <?php
