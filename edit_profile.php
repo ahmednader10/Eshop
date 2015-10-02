@@ -120,9 +120,54 @@ if(isset($_POST['submit'])) {
 	$oldPass = $_POST['old_password'];
 	$newPass = $_POST['new_password'];
 	$newPassConfirmation = $_POST['new_password_confirmation'];
-	$edit = new edit_profile($newFirst, $newLast, $newEmail, $newPass, '');
+	
+	//upload info
+	$target_dir = "uploads/";
+	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+	$uploadOk = 1;
+	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+
+	$uploadOk = 1;
+	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	// Check if image file is a actual image or fake image
+	 $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        //echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+    if (file_exists($target_file)) {
+	    echo "Sorry, file already exists.";
+	    $uploadOk = 0;
+	}
+	// Check file size
+	if ($_FILES["fileToUpload"]["size"] > 5000000) {
+	    echo "Sorry, your file is too large.";
+	    $uploadOk = 0;
+	}
+	// Allow certain file formats
+	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+	&& $imageFileType != "gif" ) {
+	    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+	    $uploadOk = 0;
+	}
+	// Check if $uploadOk is set to 0 by an error
+	if ($uploadOk == 0) {
+	    echo "Sorry, your file was not uploaded.";
+	// if everything is ok, try to upload file
+	}
+	if($uploadOk == 1) {
+		$newAvatar = $target_file;
+	} else {
+		$newAvatar = '';
+	}
+
+	$edit = new edit_profile($newFirst, $newLast, $newEmail, $newPass, $newAvatar);
 	if($edit->checkEmailValidity() && $edit->checkPasswordValidity($newPassConfirmation) && $edit->checkOldPassword($oldPass)) {
-		if($newFirst != '' || $newLast != '' || $newEmail != '' || $newPass != ''){
+		if($newFirst != '' || $newLast != '' || $newEmail != '' || $newPass != '' || $newAvatar != ''){
 			$edit->edit();
 		} else {
 			echo '<h1>no changes to apply</h1>';
@@ -145,27 +190,36 @@ $DB->DBselection();
 $query = 'SELECT * FROM users WHERE email="' . $_SESSION['email'] . '";';
 $user = mysql_fetch_assoc(mysql_query($query));
 
+if($user['avatar'] != null) {
+	$avatar = '<img style=" width:2vw; height:3.5vh;" src="' . $user['avatar'] . '" >';
+} else {
+	$avatar = 'No avatar assigned';
+}
+
 $information = 
 	"<p>
 	First Name: " . $user['first_name'] . "<br>
 	Last Name: " . $user['last_name'] . "<br>
 	Email: " . $user['email'] . "<br>
+	Avatar: " . $avatar . "<br>
 	</p>";
 
 $notice = '<h3>Input only the information you need to change</h3>';
 
 $form = <<<EOT
 	<p>
-	<form action='edit_profile.php' method='POST'>
-<<<<<<< HEAD
-	New First Name:<input type='text' name='new_first_name'/><br>
-	New Last Name:<input type='text' name='new_last_name'/><br>
-	New E-mail:<input type='text' name='new_email'/><br>
-	New Password:<input type='password' name='new_password'/><br>
-	New Password Confirmation:<input type='password' name='new_password_confirmation'/><br><br>
-	Enter your Password to apply changes :<input type='password' name='old_password'/><br>
-	<input type='submit' value='Apply changes' name='submit'/><br>
-	</form>
+	<div class="row">
+		<form action='edit_profile.php' method='POST' enctype='multipart/form-data'>
+		New First Name:<input type='text' name='new_first_name'/><br>
+		New Last Name:<input type='text' name='new_last_name'/><br>
+		New E-mail:<input type='text' name='new_email'/><br>
+		New Password:<input type='password' name='new_password'/><br>
+		New Password Confirmation:<input type='password' name='new_password_confirmation'/><br><br>
+		Enter your Password to apply changes :<input type='password' name='old_password'/><br>
+		Upload New Avatar:<input type="file" name="fileToUpload" id="fileToUpload"/><br>
+		<input type='submit' value='Apply changes' name='submit'/><br>
+		</form>
+	</div>
 	</p>
 EOT;
 
