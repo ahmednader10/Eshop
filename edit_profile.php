@@ -98,7 +98,9 @@ class edit_profile extends DBConnection {
 			$Query .= ' WHERE email="' . $_SESSION['email'] . '";';
 			if(mysql_query($Query)) {
 				echo '<h1>Your information has been changed successfully</h1><br>';
-				$_SESSION['email'] = $this->newEmail;
+				if($newEmail != ''){
+					$_SESSION['email'] = $this->newEmail;
+				}
 			} else {
 				echo '<h1>Something went wrong!!</h1><br>';
 				echo mysql_error();
@@ -109,20 +111,6 @@ class edit_profile extends DBConnection {
 	}
 
 }
-
-$form = <<<EOT
-	<p>
-	<form action='edit_profile.php' method='POST'>
-	New First Name:<input type='text' name='new_first_name'/><br>
-	New Last Name:<input type='text' name='new_last_name'/><br>
-	New E-mail:<input type='text' name='new_email'/><br>
-	New Password:<input type='password' name='new_password'/><br>
-	New Password Confirmation:<input type='password' name='new_password_confirmation'/><br><br>
-	Enter your Password to apply changes :<input type='password' name='old_password'/><br>
-	<input type='submit' value='Apply changes' name='submit'/><br>
-	</form>
-	</p>
-EOT;
 
 if(isset($_POST['submit'])) {
 	$newFirst = $_POST['new_first_name'];
@@ -150,6 +138,24 @@ if(isset($_POST['submit'])) {
 		}
 	}
 }
+
+$DB = new edit_profile('', '', '', '', '');
+$DB->DBselection();
+$query = 'SELECT * FROM users WHERE email="' . $_SESSION['email'] . '";';
+$user = mysql_fetch_assoc(mysql_query($query));
+
+$form =
+	"<p>
+	<form action='edit_profile.php' method='POST'>
+	New First Name:<input type='text' name='new_first_name' value='" . $user['first_name'] . "'/><br>
+	New Last Name:<input type='text' name='new_last_name' value='" . $user['first_name'] . "'/><br>
+	New E-mail:<input type='text' name='new_email' value='" . $user['email'] . "'/><br>
+	New Password:<input type='password' name='new_password'/><br>
+	New Password Confirmation:<input type='password' name='new_password_confirmation'/><br><br>
+	Enter your Password to apply changes :<input type='password' name='old_password'/><br>
+	<input type='submit' value='Apply changes' name='submit'/><br>
+	</form>
+	</p>";
 
 echo $form;
 
