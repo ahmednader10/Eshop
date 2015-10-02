@@ -24,10 +24,13 @@
   {
 	?>
 	<li>
-		<?php $values[$i]['name'];
-			$values[$i]['price'];
-			$values[$i]['stock'];
-		 ?>
+		<?php echo  $values[$i]['name'];?>
+	</li>
+	<li>
+		<?php echo $values[$i]['price'];?>
+	</li>
+	<li>
+		<?php  echo $values[$i]['stock'];?>
 	</li>
 	<?php 
 	}
