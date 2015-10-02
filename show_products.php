@@ -108,6 +108,11 @@ $productsList = $products->selectAll();
     </li>
     </ul>
 </nav>
+<div>
+<a href="cart.php?action=cart"> My Cart</a><br>
+<a href="history.php?action=histroy">History</a>
+
+</div>
 <div class="row">
 <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" style="margin-top:10vh;">
   <?php
@@ -139,6 +144,12 @@ $productsList = $products->selectAll();
 </ul>
 
 </div>
+<?php
+if(isset($_GET['action']) && $_GET['action']=="histroy"){
+	$m ->viewHistory($_SESSION["email"]);
+}
+
+?>
 </body>
 </html>
 

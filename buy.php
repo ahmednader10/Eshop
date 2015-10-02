@@ -16,13 +16,9 @@
  session_start();
   require_once("manage.php");
   require_once("products.php");
-<<<<<<< HEAD
-  echo $_SESSION["email"];
- 
-=======
+
   session_start();
  // session_destroy();
->>>>>>> 632cd1dc56d663623b89e7c68a16cd34fd362355
 ?>
   <div>
   <?php
@@ -44,12 +40,12 @@
      <h2><?php echo $values[$i]['summary']; ?></h2>
     <h1> price: <?php echo $values[$i]['price'];?></h1>
     
-    <a href="buy.php?action=add&pid=<?php echo $pid ?>"> Add to Cart</a>
+    <a href="buy.php?action=add&pid=<?php echo $pid ?>"> Add to Cart</a><br>
     
 <?php
 
   }
-
+	
   require_once("manage.php");
   $m = new manage();
  if(isset($_GET['action']) && $_GET['action']=="add"){
@@ -59,7 +55,7 @@
 
 
   ?>
-          
+    <a href="show_products.php">Back to all products</a>      
 </div>
 </body>
 </html>
