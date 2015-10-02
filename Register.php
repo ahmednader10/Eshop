@@ -1,5 +1,5 @@
 <?php
-require('DBConnection.php');
+require_once('DBConnection.php');
 
 class Register extends DBConnection{
 	
