@@ -33,9 +33,7 @@
 	<li>
 		<?php echo $values[$i]['price'];?>
 	</li>
-	<li>
-		<?php  echo $values[$i]['stock'];?>
-	</li>
+	
 	<?php 
 	}
 	?>
