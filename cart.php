@@ -149,7 +149,7 @@
 				<?php echo  $values[$i]['summary'];?>
 			</td>
 			<td scope="row">
-				<?php echo $values[$i]['price'];?>
+				<?php echo "$".$values[$i]['price'];?>
 			</td>
 		    <td scope="row"><a href="cart.php?action=remove&pid=<?php echo $values[$i]["id"]; ?>">Remove From Cart</a></td><br>
 			

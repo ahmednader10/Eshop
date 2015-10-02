@@ -146,7 +146,7 @@
 				<?php echo  $values[$i]['summary'];?>
 			</td>
 			<td scope="row">
-				<?php echo $values[$i]['price'];?>
+				<?php echo "$".$values[$i]['price'];?>
 			</td>
             </tr>
     <?php 
