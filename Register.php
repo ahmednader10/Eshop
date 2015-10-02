@@ -33,9 +33,9 @@ EOT;
 					$Query = "insert into users (first_name, last_name, password, email) values ('" . $first_name ."', '" . $last_name ."', '" . $password ."', '" . $email . "')";
 					if(mysql_query($Query)) {
 						echo "<h1>You have been registered successfully!</h1>";
+						header('location: home.php');
 					} else {
 						echo "<h1>Unable to register, please report this bug to any of our contact information.";
-						echo $first_name . $last_name . $email . $password;
 					}
 				} else {
 					echo "<h1>Cannot connect to the Database!!</h1>";
