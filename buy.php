@@ -121,7 +121,7 @@
         ?>
 
   <div class="row">
-<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" style="margin-top:10vh;">
+<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-1" style="margin-top:0vh;">
    <?php
   for($i = 0;$i < count($values);$i++)
   {
