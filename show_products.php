@@ -28,9 +28,7 @@ $productsList = $products->selectAll();
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-        <?php 
-        if($_SESSION["email"]){
-  ?>  
+        
       <li class="active"><a href="#">avatar</a></li>
       <li class="has-dropdown">
         <a href="#">
@@ -41,24 +39,11 @@ $productsList = $products->selectAll();
           </a>
         <ul class="dropdown">
           <li><a href="cart.php">View Cart</a></li>
-          <li ><a href="show_products.php?<?php session_destroy();  ?>">Log out</a></li>
+          <li ><a href="show_products.php?<?php   ?>">Log out</a></li>
           <li ><a href="#">Settings</a></li>
         </ul>
       </li>
-          <?php
-          }else{
-           ?>
-            <li class="has-dropdown">
-        <a href="#"> Guest </a>
-        <ul class="dropdown">
-          <li class="active"><a href="#">Log in</a></li>
-
-        </ul>
-      </li>
-     
-           <?php
-          }
-        ?>
+         
     </ul>
 
     <!-- Left Nav Section -->

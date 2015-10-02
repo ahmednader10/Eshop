@@ -13,9 +13,11 @@
 <body>
 <div>
 <?php 
+ session_start();
   require_once("manage.php");
   require_once("products.php");
-  session_start();
+  echo $_SESSION["email"];
+ 
 ?>
   <div>
   <?php
