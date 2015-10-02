@@ -89,7 +89,7 @@ class edit_profile extends DBConnection {
 				$empty = false;
 			}
 			if($this->newAvatar != '') {
-				if(!$empty) {
+				if(!$empty ) {
 					$Query .= ', ';
 				}
 				$Query .= 'avatar = "' . $this->newAvatar . '"';
@@ -107,21 +107,25 @@ class edit_profile extends DBConnection {
 		}
 	}
 
+
 }
+
 
 $form = <<<EOT
 	<p>
-	<form action='edit_profile.php' method='POST'>
+	<form action='edit_profile.php' method='POST' enctype="multipart/form-data">
 	New First Name:<input type='text' name='new_first_name'/><br>
 	New Last Name:<input type='text' name='new_last_name'/><br>
 	New E-mail:<input type='text' name='new_email'/><br>
 	New Password:<input type='password' name='new_password'/><br>
 	New Password Confirmation:<input type='password' name='new_password_confirmation'/><br><br>
 	Enter your Password to apply changess :<input type='password' name='old_password'/><br>
+	
 	<input type='submit' value='Apply changes' name='submit'/><br>
 	</form>
 	</p>
 EOT;
+
 
 if(isset($_POST['submit'])) {
 	$newFirst = $_POST['new_first_name'];
@@ -131,7 +135,7 @@ if(isset($_POST['submit'])) {
 	$newPass = $_POST['new_password'];
 	$newPassConfirmation = $_POST['new_password_confirmation'];
 	$edit = new edit_profile($newFirst, $newLast, $newEmail, $newPass, '');
-	if($edit->checkEmailValidity() && $edit->checkPasswordValidity($newPassConfirmation) && $edit->checkOldPassword($oldPass)) {
+	if($edit->checkEmailValidity() && $edit->checkPasswordValidity($newPassConfirmation) && $edit->checkOldPassword($oldPass) ) {
 		if($newFirst != '' || $newLast != '' || $newEmail != '' || $newPass != ''){
 			$edit->edit();
 		} else {
