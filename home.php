@@ -23,6 +23,10 @@ ob_start();
   <title>eShop</title>
   <style type="text/css">
 
+  #form li{
+    display: inline;
+
+  }
     #list li{
       display: inline;
       margin: 20px;
@@ -69,18 +73,20 @@ ob_start();
 
 <body>
 
-<div>
+<div style="background-color:#333333; width:100vw;">
+ <div class="row" >
  <?php 
  		session_start();
         if(!isset($_SESSION["email"])){
   ?>  
-  <h1>Log in</h1>
-  <form action="" method="post">
-    <input type="email" placeholder="Email" name ="email" id="email"/>
-    <input type="password" placeholder="Password" name="password" id="password" />
-    <input type="submit" value="Log in" />
+
+  <form action="" method="post" style="margin-top:2vh;">
+   <div class="large-2 columns"> <input style="border-radius: 5px 5px 5px 5px;" type="email" placeholder="Email" name ="email" id="email"/></div>
+   <div class="large-2 columns"> <input style="border-radius: 5px 5px 5px 5px;" type="password" placeholder="Password" name="password" id="password" /></div>
+   <div > <input class="tiny button " style="border-radius: 5px 5px 5px 5px; " type="submit" value="Log in" /></div>
   </form>
-  <p>New user ? <a href="Register.php">sign up</a> now!</p>
+  <div  style="position:absolute; top:4vh; left:46vw; color:white;">  <p style="font-size:12px;">New user ? <a href="Register.php">sign up</a> now!</p></div>
+</div>
 </div>
 <?php
 		}
