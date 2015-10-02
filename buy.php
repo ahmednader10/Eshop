@@ -36,12 +36,12 @@
      <h2><?php echo $values[$i]['summary']; ?></h2>
     <h1> price: <?php echo $values[$i]['price'];?></h1>
     
-    <a href="buy.php?action=add&pid=<?php echo $pid ?>"> Add to Cart</a>
+    <a href="buy.php?action=add&pid=<?php echo $pid ?>"> Add to Cart</a><br>
     
 <?php
 
   }
-
+	
   // if(isset($_REQUEST['buy'])){
   //   $u = "Select id from users where email = '".$email."'";
   //     $uid = mysql_query($u);
@@ -74,7 +74,7 @@
 
 
   ?>
-          
+    <a href="show_products.php">Back to all products</a>      
 </div>
 </body>
 </html>

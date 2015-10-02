@@ -51,9 +51,13 @@ ob_start();
 		  echo "please enter correct username and password";
 	  }
   }
-  
+  if(isset($_SESSION["email"])){
   ?>
-  
+  <div>
+  	<a href="cart.php?action=cart"> My Cart</a><br>
+	<a href="history.php?action=histroy">History</a>
+  </div>
+  <?php } ?>
   <div class="row">
 <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">
   <?php
