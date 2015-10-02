@@ -99,7 +99,7 @@ class edit_profile extends DBConnection {
 			$Query .= ' WHERE email="' . $_SESSION['email'] . '";';
 			if(mysql_query($Query)) {
 				echo '<h1>Your information has been changed successfully</h1><br>';
-				if($newEmail != ''){
+				if(isset($newEmail)){
 					$_SESSION['email'] = $this->newEmail;
 				}
 			} else {
@@ -149,7 +149,7 @@ $form =
 	"<p>
 	<form action='edit_profile.php' method='POST'>
 	New First Name:<input type='text' name='new_first_name' value='" . $user['first_name'] . "'/><br>
-	New Last Name:<input type='text' name='new_last_name' value='" . $user['first_name'] . "'/><br>
+	New Last Name:<input type='text' name='new_last_name' value='" . $user['last_name'] . "'/><br>
 	New E-mail:<input type='text' name='new_email' value='" . $user['email'] . "'/><br>
 	New Password:<input type='password' name='new_password'/><br>
 	New Password Confirmation:<input type='password' name='new_password_confirmation'/><br><br>
