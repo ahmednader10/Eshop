@@ -37,12 +37,16 @@
 	}
 	?>
 	</ul>
+    <a href="cart.php?action=buy">Checkout</a>
 
 </div>
 
 <?php
 if(isset($_GET['action']) && $_GET['action']=="remove"){
 	$m ->RemoveFromCart($_GET['pid']);
+}
+if(isset($_GET['action']) && $_GET['action']=="buy"){
+	$m ->PurchaseCart($_SESSION['email']);
 }
 ?>
 </body>

@@ -59,6 +59,28 @@
 		}
 		return $array;
 	}  
+	public function PurchaseCart($email){			
+		
+		if ($this->DBselection())
+			{
+				$u = "Select id from users where email = '".$email."'";
+			$uid = mysql_query($u);
+			$id = mysql_fetch_row($uid);
+
+		$query = "update Bought set bought=true where User_id = ". $id[0];
+		$exec = mysql_query($query);
+			if($exec){
+				header("location:show_products.php");
+			}
+			else{
+				echo "failed to add to cart";
+		
+			}
+		}else{
+				echo 'db fail';
+		}
+	
+	}  
 	public function RemoveFromCart($pid){
 		$array = array();
 		if ($this->DBselection())
