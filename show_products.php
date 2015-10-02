@@ -33,9 +33,9 @@ $productsList = $products->selectAll();
           ?>
           </a>
         <ul class="dropdown">
-          <li><a href="#">View Cart</a></li>
-          <li class="active"><a href="#">Log out</a></li>
-          <li class="active"><a href="#">Settings</a></li>
+          <li><a href="cart.php">View Cart</a></li>
+          <li ><a href="show_products.php?<?php session_destroy();  ?>">Log out</a></li>
+          <li ><a href="#">Settings</a></li>
         </ul>
       </li>
           <?php
@@ -44,9 +44,8 @@ $productsList = $products->selectAll();
             <li class="has-dropdown">
         <a href="#"> Guest </a>
         <ul class="dropdown">
-          <li><a href="#">View Cart</a></li>
-          <li class="active"><a href="#">Log out</a></li>
-          <li class="active"><a href="#">Settings</a></li>
+          <li class="active"><a href="#">Log in</a></li>
+
         </ul>
       </li>
      
@@ -58,15 +57,6 @@ $productsList = $products->selectAll();
     <!-- Left Nav Section -->
     <ul class="left">
       <li style="color:white;"><p style="position:absolute; top:10px;">
-      <?php 
-        if($_SESSION["email"]){
-             $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
-            echo implode(" ", $uname) ;
-          }else{
-            echo "Guest!";
-          }
-        ?>
-      </p>
     </li>
     </ul>
   </section>

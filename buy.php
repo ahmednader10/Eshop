@@ -1,6 +1,8 @@
 
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="foundation.css">
+
 <head>
   <title></title>
 </head>
