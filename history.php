@@ -111,30 +111,27 @@
     </li>
     </ul>
 </nav>
-<div class="row" >
-	<div class="large-2 columns" style="position:absolute; left:0vw;">
+<div>
+	<?php
+	
+	
+	
+	$values = $m -> viewHistory($_SESSION['email']);
 		
-	<?php 
-	   if(count($values) == 0){
-		  ?>
-		  <p class="warning label"> <?php echo "Your Cart is still empty ";
-		   ?></p>
-		   <br>
-		   <a href="show_products.php">Add items to your cart now</a>
-		   <?php
-	   }
-	   ?>
-       <?php
-	if(count($values) >0){
+
 	?>
-	</div>
+	
+	<?php
+	 if(count($values) >0){
+	?>
+	
 	<div class="large-8 columns" style="position:absolute; left:20vw;">
 		
 		<table style="width:60vw;">
 			<th>name</th>
 			<th> description</th>
 			<th> price</th>
-			<th></th>
+		
 			<?php
 			  for($i = 0;$i < count($values);$i++)
 		  {
@@ -149,32 +146,24 @@
 			<td scope="row">
 				<?php echo $values[$i]['price'];?>
 			</td>
-		    <td scope="row"><a href="cart.php?action=remove&pid=<?php echo $values[$i]["id"]; ?>">Remove From Cart</a></td><br>
-			
-			</tr>
-			<?php 
-			}
-			?>
-			</table>
-		 <?php 
-			}
-			?>   
-	<?php
-	if(count($values) >0){
+            </tr>
+    <?php 
+	}
 	?>
-        <a href="cart.php?action=buy">Checkout</a><br>
-	    <a href="show_products.php">Add another item to cart</a>
-    	<?php } ?>
-		<?php
-		if(isset($_GET['action']) && $_GET['action']=="remove"){
-			$m ->RemoveFromCart($_GET['pid']);
-		}
-		if(isset($_GET['action']) && $_GET['action']=="buy"){
-			$m ->PurchaseCart($_SESSION['email']);
-		}
-		?>
-	</div>
-</div>
-
+    <?php 
+	}
+	?>
+	</table>
+   
+   
+   <?php 
+   if(count($values) == 0){
+	   echo "You still haven't purchased any item ";
+	   ?>
+	   <a href="show_products.php">Buy now</a>
+	   <?php
+   }
+   ?>
+   </div>
 </body>
 </html>
