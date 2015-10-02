@@ -97,7 +97,7 @@ $productsList = $products->selectAll();
              <li ><a href=""> Settings </a>
               </li><br>
               <li>
-                <a name="logout" href="home.php?action=logout"> Log out </a>
+                <a name="logout" href="logout.php"> Log out </a>
               </li>
  
       </ul>
