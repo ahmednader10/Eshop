@@ -1,3 +1,4 @@
+<title>eShop</title>
 <?php
 require_once('DBConnection.php');
 session_start();
