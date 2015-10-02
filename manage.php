@@ -46,7 +46,7 @@
 			$uid = mysql_query($u);
 			$id = mysql_fetch_row($uid);
 
-		$query = "Select name , price ,stock from products as p INNER JOIN Bought as b
+		$query = "Select name,summary,price,b.id from products as p INNER JOIN Bought as b
 		on p.id = b.Product_id
 		where b.User_id = ".$id[0] ." AND b.bought = false" ;
 		$exec = mysql_query($query);
@@ -59,7 +59,29 @@
 		}
 		return $array;
 	}  
+	public function RemoveFromCart($pid){
+		$array = array();
+		if ($this->DBselection())
+			{
+				
+		$query = "delete from Bought where id = ".$pid;
+		$exec = mysql_query($query);
+		if($exec){
+				header("location:cart.php");
+			}
+			else{
+				echo "failed to remove from cart";
+					echo $id[0];
+			echo $pid;
+		
+			}
 	}
-
+		else {
+			echo "can't connect to db";
+			
+			
+		}
 	
+	}
+	}
 ?>

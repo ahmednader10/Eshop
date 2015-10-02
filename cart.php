@@ -14,12 +14,7 @@
 	require_once("manage.php");
 	$m = new manage();
 	$values = $m -> getCart($_SESSION['email']);
-	// $u = "Select id from users where email = '".$_SESSION['email']."'";
-	// 		$uid = mysql_query($u);
-	// 		$id = mysql_fetch_row($uid);
-	// 		$query = "Select * from products 
-	// 		Join Bought where User_id 
-	// 		"
+		
 
 	?>
 	<ul>
@@ -33,6 +28,7 @@
 	<li>
 		<?php echo $values[$i]['price'];?>
 	</li>
+    <li><a href="cart.php?action=remove&pid=<?php echo $values[$i]["id"]; ?>">Remove From Cart</a></li>
 	
 	<?php 
 	}
@@ -40,5 +36,11 @@
 	</ul>
 
 </div>
+
+<?php
+if(isset($_GET['action']) && $_GET['action']=="remove"){
+	$m ->RemoveFromCart($_GET['pid']);
+}
+?>
 </body>
 </html>
