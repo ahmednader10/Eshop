@@ -91,7 +91,8 @@
 		$query = "update Bought set bought=true where User_id = ". $id[0];
 		$exec = mysql_query($query);
 			if($exec){
-				header("location:show_products.php");
+				$message="Cart items purchased successfully";
+				header("location:show_products.php?message={$message}");
 			}
 			else{
 				echo "failed to add to cart";
@@ -115,6 +116,7 @@
 		$exec = mysql_query($query);
 		$exec2 = mysql_query($Query2);
 		if($exec && $exec2){
+			
 				header("location:cart.php");
 			}
 			else{
