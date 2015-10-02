@@ -59,7 +59,7 @@
     	border:1px solid #e6e6e6;
     	box-shadow: 2px 2px #333333;
     	width: 20vw;
-    	height: 72vh;
+    	height: 80vh;
     	line-height: 1em;
     	border-radius: 6px 6px 6px 6px;
     	padding: 2vh;
@@ -363,8 +363,8 @@ $form = <<<EOT
 			New Password:<input type='password' name='new_password' style="border-radius:5px 5px 5px 5px; "/><br>
 			New Password Confirmation:<input type='password' name='new_password_confirmation' style="border-radius:5px 5px 5px 5px; "/><br><br>
 			Enter your Password to apply changes :<input type='password' name='old_password' style="border-radius:5px 5px 5px 5px; "/><br>
-			<input type='submit' value='Apply changes' name='submit'/><br>
-			<input type='submit' value='Apply changes' name='submit' style="border-radius:5px 5px 5px 5px; position:absolute; left:5vw; " class="small button"/><br>
+			<input type="file" name="fileToUpload" id="fileToUpload">
+			<input type='submit' value='Apply changes' name='submit' style="border-radius:5px 5px 5px 5px; position:absolute; left:5vw; top:73vh; " class="small button"/><br>
 		</form>
 	</div>
 EOT;
