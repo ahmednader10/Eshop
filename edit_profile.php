@@ -1,3 +1,4 @@
+<title>eShop</title>
 <?php
 require_once('DBConnection.php');
 session_start();
@@ -98,7 +99,7 @@ class edit_profile extends DBConnection {
 			$Query .= ' WHERE email="' . $_SESSION['email'] . '";';
 			if(mysql_query($Query)) {
 				echo '<h1>Your information has been changed successfully</h1><br>';
-				if($newEmail != ''){
+				if(isset($newEmail)){
 					$_SESSION['email'] = $this->newEmail;
 				}
 			} else {
@@ -156,6 +157,7 @@ $notice = '<h3>Input only the information you need to change</h3>';
 $form = <<<EOT
 	<p>
 	<form action='edit_profile.php' method='POST'>
+<<<<<<< HEAD
 	New First Name:<input type='text' name='new_first_name'/><br>
 	New Last Name:<input type='text' name='new_last_name'/><br>
 	New E-mail:<input type='text' name='new_email'/><br>
