@@ -66,7 +66,7 @@ ob_start();
   {
   ?>
   <li style="">
-      <img src="troll.png"> 
+      <img src="uploads/trollface.png"> 
       <p style="font-size:20px;"> <?php echo $productsList[$i]['name'];?></p>
       <p> <?php echo $productsList[$i]['summary'];?><br>
       price:  <?php echo $productsList[$i]['price'];?></p>
@@ -95,6 +95,8 @@ ob_start();
 			echo 'alert("You Should login first")';
 			echo '</script>';
  }
+ 
+
  ?>
 </body>
 

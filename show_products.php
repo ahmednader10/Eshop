@@ -85,19 +85,19 @@ $productsList = $products->selectAll();
            <ul id="dropmenu">
               <li>
               <a href="cart.php?action=cartl"> 
-                <?php 
+                
+                View Cart <?php 
                 require_once("manage.php");
                 $m = new manage();
                 $values = $m -> getCart($_SESSION['email']);
                 echo count($values);
-                ?>
-                View Cart </a>  
+                ?> </a>  
               </li>
               <li><a href="history.php?action=histroy">History</a></li>
              <li ><a href=""> Settings </a>
               </li><br>
               <li>
-                <a name="logout" href="home.php"> Log out </a>
+                <a name="logout" href="home.php?action=logout"> Log out </a>
               </li>
  
       </ul>
@@ -132,14 +132,13 @@ if( !empty( $_REQUEST['message'] ) )
      <ul class="pricing-table">
        <li> <p class="title"> <?php echo $productsList[$i]['name'];?></p>
        </li><li class="price">
-          <img src="/opt/lampp/htdocs/eshop/Eshop/troll.png"> 
+          <img src="uploads/trollface.png"> 
           <p ><?php echo $productsList[$i]['price'];?></p>
         </li>
         <li class="description"><?php echo $productsList[$i]['summary'];?></li>
-        <li class="bullet-item"><?php echo $productsList[$i]['stock'];?></li>
         <li class="cta-button">
             <?php if($productsList[$i]['stock'] > 0){ ?>
-            <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a>
+            <p><a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a></p>
             <?php }else {?>
             <p> Out of Stock </p>
             <?php } ?>
