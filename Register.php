@@ -18,10 +18,11 @@ class Register extends DBConnection{
 	
 	public function regist(){
 		$form = <<<EOT
-		<h1> Enter your information below to register </h1>
+		<h1 style="text-align:center; background-color:#e6e6e6; color:white;" > Enter your information below to register </h1>
 		<p>
+		<div class="row">
 			<form action="Register.php" method="POST" enctype="multipart/form-data">
-			First Name: <input type="text" name="first_name" required/> <br>
+			First Name:<div style="width=20vw;"> <input type="text" name="first_name" required/> <br></div>
 			Last Name: <input type="text" name="last_name" required/><br>
 			E-mail: <input type="text" name="email" required/><br>
 			Password: <input type="password" name="password" required/><br>
@@ -30,6 +31,7 @@ class Register extends DBConnection{
 
 			<input type="submit" value="Register" name="submit"/>
 			</form>
+		</div>
 		</p>
 EOT;
 
