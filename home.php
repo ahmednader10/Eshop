@@ -60,7 +60,7 @@ ob_start();
       <p style="font-size:20px;"> <?php echo $productsList[$i]['name'];?></p>
       <p> <?php echo $productsList[$i]['summary'];?>
       stock:  <?php echo $productsList[$i]['stock'];?>  price:  <?php echo $productsList[$i]['price'];?></p>
-     
+      <a href="buy.php?<?php echo "pid=" . $productsList[$i]['id'];?>"> Buy</a>
   </li>
    <?php
   }

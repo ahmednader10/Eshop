@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="foundation.css">
-<head>
 
+<head>
+<script type="text/javascript">
+  function dropdown(){
+    if(document.getElementById('dropmenu').style.display== 'none'){
+      document.getElementById('dropmenu').style.display= 'block';
+    } else {
+      document.getElementById('dropmenu').style.display= 'none';
+    }
+  }
+</script>
   <meta charset="UTF-8">
 
   <title>eShop</title>
+  <style type="text/css">
 
+    #list li{
+      display: inline;
+      margin: 20px;
+      color: white;
+    }
+
+    #dropmenu{
+      background-color: white;
+      margin-top: 20px;
+     text-align: center;
+     display: none;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -21,27 +45,28 @@ $productsList = $products->selectAll();
     <li class="name">
       <h1><a href="#">My Site</a></h1>
     </li>
-     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
 
-  <section class="top-bar-section">
     <!-- Right Nav Section -->
-    <ul class="right">
+    <ul id="list" style="position:absolute; left:90vw; display:inline; top:10px;">
         
-      <li class="active"><a href="#">avatar</a></li>
-      <li class="has-dropdown">
-        <a href="#">
-         
+      <li ><a href="#"><img src="troll.png"></a></li>
+      <li id="drop" onclick="dropdown();">
          <?php    $uname = mysql_fetch_assoc(mysql_query("Select first_name from users where email = '". $_SESSION["email"]."'"));
             echo implode(" ", $uname) ;
           ?>
-          </a>
-        <ul class="dropdown">
-          <li><a href="cart.php">View Cart</a></li>
-          <li ><a href="show_products.php?<?php   ?>">Log out</a></li>
-          <li ><a href="#">Settings</a></li>
-        </ul>
+           <ul id="dropmenu">
+              <li>
+              <a href="cart.php"> View Cart <br></a>  
+              </li>
+              <li>
+                <a name="logout" href="home.php"> Log out<br> </a>
+              </li>
+              <li>
+                <a href=""> Settings </a>
+              </li>
+      </ul>
+     
       </li>
          
     </ul>
@@ -51,10 +76,9 @@ $productsList = $products->selectAll();
       <li style="color:white;"><p style="position:absolute; top:10px;">
     </li>
     </ul>
-  </section>
 </nav>
 <div class="row">
-<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3">
+<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3" style="margin-top:10vh;">
   <?php
   
   for($i = 0;$i < count($productsList);$i++)
