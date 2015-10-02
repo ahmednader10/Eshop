@@ -144,19 +144,31 @@ $DB->DBselection();
 $query = 'SELECT * FROM users WHERE email="' . $_SESSION['email'] . '";';
 $user = mysql_fetch_assoc(mysql_query($query));
 
-$form =
+$information = 
 	"<p>
+	First Name: " . $user['first_name'] . "<br>
+	Last Name: " . $user['last_name'] . "<br>
+	Email: " . $user['email'] . "<br>
+	</p>";
+
+$notice = '<h3>Input only the information you need to change</h3>';
+
+$form = <<<EOT
+	<p>
 	<form action='edit_profile.php' method='POST'>
-	New First Name:<input type='text' name='new_first_name' value='" . $user['first_name'] . "'/><br>
-	New Last Name:<input type='text' name='new_last_name' value='" . $user['first_name'] . "'/><br>
-	New E-mail:<input type='text' name='new_email' value='" . $user['email'] . "'/><br>
+	New First Name:<input type='text' name='new_first_name'/><br>
+	New Last Name:<input type='text' name='new_last_name'/><br>
+	New E-mail:<input type='text' name='new_email'/><br>
 	New Password:<input type='password' name='new_password'/><br>
 	New Password Confirmation:<input type='password' name='new_password_confirmation'/><br><br>
 	Enter your Password to apply changes :<input type='password' name='old_password'/><br>
 	<input type='submit' value='Apply changes' name='submit'/><br>
 	</form>
-	</p>";
+	</p>
+EOT;
 
+echo $information;
+echo $notice;
 echo $form;
 
 ?>
