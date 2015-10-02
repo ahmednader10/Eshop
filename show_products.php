@@ -179,7 +179,7 @@ ob_start();
   ?>
   <li >
      <ul class="pricing-table">
-       <li> <p class="title"> <?php echo $productsList[$i]['name'];?></p>
+       <li class="title"> <p > <?php echo $productsList[$i]['name'];?></p>
        </li><li class="price">
           <img src="uploads/trollface.png"> 
           <p ><?php echo "$".$productsList[$i]['price'] ;?></p>
