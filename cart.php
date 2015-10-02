@@ -25,6 +25,9 @@
 	<li>
 		<?php echo  $values[$i]['name'];?>
 	</li>
+    <li>
+		<?php echo  $values[$i]['summary'];?>
+	</li>
 	<li>
 		<?php echo $values[$i]['price'];?>
 	</li>
