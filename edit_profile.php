@@ -344,7 +344,6 @@ if($user['avatar'] != null) {
 }
 
 $information = 
-<<<<<<< HEAD
 	'<div id="info">
 		<img src="'.$user['avatar'].'"/>
 		<h2> Your Current information </h2>
@@ -352,46 +351,22 @@ $information =
 		Last Name: ' . $user['last_name'] . '<br>
 		Email: ' . $user['email'] . '<br>
 		</div>';
-=======
-	"<p>
-	First Name: " . $user['first_name'] . "<br>
-	Last Name: " . $user['last_name'] . "<br>
-	Email: " . $user['email'] . "<br>
-	Avatar: " . $avatar . "<br>
-	</p>";
->>>>>>> ee6561d49450dea004d3bd27c8d22f3807e4f94f
 
 $notice = '<div id="edit" ><h3  style="text-align:center;">Input only the information you need to change</h3>';
 
 $form = <<<EOT
-<<<<<<< HEAD
 	
-		<form action='edit_profile.php' method='POST'>
+		<form action='edit_profile.php' method='POST' enctype='multipart/form-data'>
 			New First Name:<input style="border-radius:5px 5px 5px 5px; " type='text' name='new_first_name'/><br>
 			New Last Name:<input type='text' name='new_last_name' style="border-radius:5px 5px 5px 5px; "/><br>
 			New E-mail:<input type='text' name='new_email' style="border-radius:5px 5px 5px 5px; "/><br>
 			New Password:<input type='password' name='new_password' style="border-radius:5px 5px 5px 5px; "/><br>
 			New Password Confirmation:<input type='password' name='new_password_confirmation' style="border-radius:5px 5px 5px 5px; "/><br><br>
 			Enter your Password to apply changes :<input type='password' name='old_password' style="border-radius:5px 5px 5px 5px; "/><br>
+			<input type='submit' value='Apply changes' name='submit'/><br>
 			<input type='submit' value='Apply changes' name='submit' style="border-radius:5px 5px 5px 5px; position:absolute; left:5vw; " class="small button"/><br>
 		</form>
 	</div>
-=======
-	<p>
-	<div class="row">
-		<form action='edit_profile.php' method='POST' enctype='multipart/form-data'>
-		New First Name:<input type='text' name='new_first_name'/><br>
-		New Last Name:<input type='text' name='new_last_name'/><br>
-		New E-mail:<input type='text' name='new_email'/><br>
-		New Password:<input type='password' name='new_password'/><br>
-		New Password Confirmation:<input type='password' name='new_password_confirmation'/><br><br>
-		Enter your Password to apply changes :<input type='password' name='old_password'/><br>
-		Upload New Avatar:<input type="file" name="fileToUpload" id="fileToUpload"/><br>
-		<input type='submit' value='Apply changes' name='submit'/><br>
-		</form>
-	</div>
-	</p>
->>>>>>> ee6561d49450dea004d3bd27c8d22f3807e4f94f
 EOT;
 
 echo $information;
