@@ -21,6 +21,7 @@ ob_start();
     <input type="password" placeholder="Password" name="password" id="password" />
     <input type="submit" value="Log in" />
   </form>
+  <a href="Register.php">Sign Up</a>
 </div>
 
   
