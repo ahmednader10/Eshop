@@ -79,6 +79,7 @@ class edit_profile extends DBConnection {
 					$Query .= ', ';
 				}
 				$Query .= 'email = "' . $this->newEmail . '"';
+				$_SESSION['email'] = $this->newEmail;
 				$empty = false;
 			}
 			if($this->newPassword != '') {
