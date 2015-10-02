@@ -25,11 +25,11 @@
 
     #dropmenu{
 
-      border: 1px solid black;
+      border: 1px solid gray;
       background-color: white;
       border-color: gray;
       border-radius: 0 0 5px 5px;
-      margin-top: 9px;
+      margin-top: 8px;
       margin-right: 3px;
      text-align: center;
      display: none;
@@ -121,8 +121,10 @@
     	<?php } ?>
 	<?php 
 	   if(count($values) == 0){
-		   echo "Your Cart is still empty ";
-		   ?>
+		  ?>
+		  <p class="warning label"> <?php echo "Your Cart is still empty ";
+		   ?></p>
+		   <br>
 		   <a href="show_products.php">Add items to your cart now</a>
 		   <?php
 	   }
