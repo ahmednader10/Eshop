@@ -124,7 +124,7 @@ $productsList = $products->selectAll();
   ?>
   <li >
      <ul class="pricing-table">
-       <li> <p class="title"> <?php echo $productsList[$i]['name'];?></p>
+       <li class="title"> <p > <?php echo $productsList[$i]['name'];?></p>
        </li><li class="price">
           <img src="/opt/lampp/htdocs/eshop/Eshop/troll.png"> 
           <p ><?php echo $productsList[$i]['price'];?></p>

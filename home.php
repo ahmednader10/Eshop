@@ -9,7 +9,62 @@ ob_start();
   <meta charset="UTF-8">
 
   <title>eShop</title>
+<script type="text/javascript">
+  function dropdown(){
+    if(document.getElementById('dropmenu').style.display== 'none'){
+      document.getElementById('dropmenu').style.display= 'block';
+    } else {
+      document.getElementById('dropmenu').style.display= 'none';
+    }
+  }
+</script>
+  <meta charset="UTF-8">
 
+  <title>eShop</title>
+  <style type="text/css">
+
+    #list li{
+      display: inline;
+      margin: 20px;
+      color: white;
+    }
+
+    #drop:hover > #dropmenu{
+      display: block;
+    }
+
+    #dropmenu{
+
+      border: 1px solid black;
+      background-color: white;
+      border-color: gray;
+      border-radius: 0 0 5px 5px;
+      margin-top: 9px;
+      margin-right: 3px;
+     text-align: center;
+     display: none;
+     box-shadow: 1px 1px gray;
+    }
+
+    #title{
+            color: white;
+   font-size:20px; text-align:center; font-size:20px;background-color:#333333; 
+   box-shadow: 0px 2px black;
+    }
+
+    .product{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+          }
+
+    .flashy{
+      text-align: center;
+      font-size: 30px;
+      background-color: #e6e6e6;
+    }
+  </style>
+</head>
 </head>
 
 <body>
