@@ -9,7 +9,20 @@ class edit_profile extends DBConnection {
 	private $newPasswordConfirmation;
 	private $newAvatar;
 
+	public function __construct($newFirst, $newLast, $newEmail, $newPassword,
+	 $newPasswordConfirmation, $newAvatar) {
+	 	$this->newFirst = $newFirst;
+	 	$this->newLast = $newLast;
+	 	$this->newEmail = $newEmail;
+	 	$this->newPassword = $newPassword;
+	 	$this->newPasswordConfirmation = $newPasswordConfirmation;
+	 	$this->newAvatar = $newAvatar;
+	}
+
 	public function checkEmailValidity() {
+		if($newEmail == '') {
+			return true;
+		}
 		$query = mysql_query('Select * from users where email = ' . $newEmail . ';');
 		$number = mysql_num_rows($query);
 		if($number != 0) {
@@ -29,14 +42,26 @@ class edit_profile extends DBConnection {
 		}
 	}
 
-	public function __construct($newFirst, $newLast, $newEmail, $newPassword,
-	 $newPasswordConfirmation, $newAvatar) {
-	 	$this->newFirst = $newFirst;
-	 	$this->newLast = $newLast;
-	 	$this->newEmail = $newEmail;
-	 	$this->newPassword = $newPassword;
-	 	$this->newPasswordConfirmation = $newPasswordConfirmation;
-	 	$this->newAvatar = $newAvatar;
+	public function edit() {
+		if($this->DBselection()) {
+			$Query = 'UPDATE users SET ';
+			$empty = true;
+			if($newFirst != '') {
+				if(!$empty) {
+					$Query .= ', ';
+				}
+				$Query .= 'first_name = ' . $newFirst;
+				$empty = false;
+			}
+			if($newLast != '') {
+				if(!$empty) {
+					$Query .= ', ';
+				}
+				$Query .= 'last_name = ' . $newLast;
+			} 
+		} else {
+			echo '<h1>Cannot connect to the Database</h1>';
+		}
 	}
 
 }
@@ -61,18 +86,13 @@ if(isset($_POST['submit'])) {
 	$oldPass = $_POST['old_password'];
 	$newPass = $_POST['new_password'];
 	$newPassConfirmation = $_POST['new_password_confirmation'];
-	if(filter_var($email, FILTER_VALIDATE_EMAIL) && $password == $password_confirmation && strlen($password) >= 8) {
-		$email = strtolower($email);	
-		if ($this->DBselection()){
-			$Query = "insert into users (first_name, last_name, password, email) values ('" . $first_name ."', '" . $last_name ."', '" . $password ."', '" . $email . "')";
-			if(mysql_query($Query)) {
-				echo "<h1>You have been registered successfully!</h1>";
-				header('location: home.php');
-			} else {
-				echo "<h1>Unable to register, please report this bug to any of our contact information.";
-			}
-		} else {
-			echo "<h1>Cannot connect to the Database!!</h1>";
+	$userQuery = 'SELECT * FROM users WHERE email = ' . $_SESSION['email'] . ';';
+	$user = mysql_fetch_assoc(mysql_query($userQuery));
+	$realOldPass = $user['password'];
+	if($this->checkEmailValidity && $this->checkPasswordValidity && strlen($password) >= 8 && $oldPass == $realOldPass) {
+		if($newFirst != '' || $newLast != '' || $newEmail != '' || $newPass != ''){
+			$edit = new edit_profile($newFirst, $newLast, $newEmail, $newPass, $newPassConfirmation);
+			$edit->edit();
 		}
 	} else {
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
