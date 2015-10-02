@@ -21,16 +21,17 @@ ob_start();
     <input type="password" placeholder="Password" name="password" id="password" />
     <input type="submit" value="Log in" />
   </form>
+  <a href="Register.php">Sign Up</a>
 </div>
 
   
   <?php
   require_once("LoginValidity.php");
   $user = new LoginValidity();
-  if($_REQUEST)
+  if($_POST)
 	 {
-	  $Email = $_REQUEST["email"];
-	  $password = $_REQUEST["password"];
+	  $Email = $_POST["email"];
+	  $password = $_POST["password"];
 	  if ($user->checkValidity($Email,$password))
 	  {
 		  echo "Login successful";
