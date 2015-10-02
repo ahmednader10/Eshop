@@ -78,13 +78,14 @@ ob_start();
 
 <body>
 
-<div style="background-color:#333333; width:100vw;">
- <div class="row" >
+
  <?php 
  		session_start();
         if(!isset($_SESSION["email"])){
   ?>  
+<div style="background-color:#333333; width:100vw;">
 
+ <div class="row" >
   <form action="" method="post" style="margin-top:2vh;">
    <div class="large-2 columns"> <input style="border-radius: 5px 5px 5px 5px;" type="email" placeholder="Email" name ="email" id="email"/></div>
    <div class="large-2 columns"> <input style="border-radius: 5px 5px 5px 5px;" type="password" placeholder="Password" name="password" id="password" /></div>
@@ -150,6 +151,7 @@ ob_start();
                 ?> </span></a>  
               </li>
               <li><a href="history.php?action=history">History</a></li><br>
+              <li><a href="edit_profile.php">Edit Profile</a></li><br>
              <li ><a href="show_products.php"> All Products </a>
               </li><br>
               <li>
@@ -204,8 +206,8 @@ ob_start();
   }
   ?>
 </ul>
-
 </div>
+
 
 <?php
 
