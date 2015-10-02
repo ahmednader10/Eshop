@@ -91,7 +91,7 @@
 		$query = "update Bought set bought=true where User_id = ". $id[0];
 		$exec = mysql_query($query);
 			if($exec){
-				$message="Items purchased successfully";
+				$message="Cart items purchased successfully";
 				header("location:show_products.php?message={$message}");
 			}
 			else{
